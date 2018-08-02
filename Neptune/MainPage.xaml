@@ -7,8 +7,65 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <Style x:Key="TextBlockCommonLayoutStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,5,10"/>
+        </Style>
+        <Style x:Key="TextBoxCommonLayoutStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="5,0,0,10"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style x:Key="PasswordBoxCommonLayoutStyle" TargetType="PasswordBox">
+            <Setter Property="Margin" Value="5,0,0,10"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Neptune" HorizontalAlignment="Center" Margin="0,0,0,23" FontSize="34"/>
+            <Line Width="350" 
+                  HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" 
+                  Height="5" 
+                  Stroke="White" 
+                  X1="350" 
+                  X2="0" 
+                  Y1="3" 
+                  Y2="3" 
+                  StrokeThickness="2" 
+                  StrokeEndLineCap="Round"
+                  Margin="10,0,10,30"/>
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Id:" 
+                           Grid.Row="0" 
+                           Grid.Column="0" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource TextBlockCommonLayoutStyle}"/>
+                <TextBox Name="AuthenticationIdTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxCommonLayoutStyle}"/>
+                <TextBlock Text="Password:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource TextBlockCommonLayoutStyle}"/>
+                <PasswordBox Name="AuthenticationPasswordTextBox" Grid.Column="1" Grid.Row="1" Style="{StaticResource PasswordBoxCommonLayoutStyle}"/>
+            </Grid>
+            <RelativePanel Margin="0,20,0,20">
+                <ProgressRing Name="AuthenticationProgressRing"
+                              RelativePanel.RightOf="AuthenticationSignInButton" 
+                              RelativePanel.AlignVerticalCenterWith="AuthenticationSignInButton"
+                              Margin="10,0,0,0"/>
+                <Button Name="AuthenticationSignInButton" 
+                        Content="Sign in" 
+                        Click="AuthenticationSignInButton_Click" 
+                        HorizontalAlignment="Center"
+                        Style="{ThemeResource ButtonRevealStyle}"
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+            </RelativePanel>
+        </StackPanel>
     </Grid>
 </Page>

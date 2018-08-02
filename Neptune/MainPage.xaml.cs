@@ -26,5 +26,10 @@ namespace Neptune
         {
             this.InitializeComponent();
         }
+
+        private void AuthenticationSignInButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
