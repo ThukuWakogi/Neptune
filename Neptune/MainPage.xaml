@@ -61,7 +61,7 @@
                               Margin="10,0,0,0"/>
                 <Button Name="AuthenticationSignInButton" 
                         Content="Sign in" 
-                        Click="AuthenticationSignInButton_Click" 
+                        Click="AuthenticationSignInButton_ClickAsync" 
                         HorizontalAlignment="Center"
                         Style="{ThemeResource ButtonRevealStyle}"
                         RelativePanel.AlignHorizontalCenterWithPanel="True"/>

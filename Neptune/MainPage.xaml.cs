@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Neptune.Models;
+using Neptune.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,9 +30,20 @@ namespace Neptune
             this.InitializeComponent();
         }
 
-        private void AuthenticationSignInButton_Click(object sender, RoutedEventArgs e)
+        private async void AuthenticationSignInButton_ClickAsync(object sender, RoutedEventArgs e)
         {
+            AuthenticationProgressRing.IsActive = true;
+            bool authentic = await NeptuneDatabase.AuthenticatedAsync(Convert.ToInt32(AuthenticationIdTextBox.Text), AuthenticationPasswordTextBox.Password);
 
+            if (authentic)
+            {
+                Frame.Navigate(typeof(ControlPage));
+            }
+            else
+            {
+                await new MessageDialog("You Not!").ShowAsync();
+            }
+            AuthenticationProgressRing.IsActive = false;
         }
     }
 }

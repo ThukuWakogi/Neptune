@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="Neptune.Views.ControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="ControlNavigationView" Margin="0,0,0,0" IsSettingsVisible="False" Header="Welcome" SelectionChanged="ControlNavigationView_SelectionChanged"  Canvas.ZIndex="0">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="People" Content="Workers" Tag="Workers"/>
+                <NavigationViewItem Icon="Phone" Content="Customers" Tag="Customers"/>
+                <NavigationViewItem Icon="Manage" Content="Materials" Tag="Materials"/>
+                <NavigationViewItem Content="Flies" Tag="Flies">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE24A;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Shop" Content="Orders" Tag="Orders"/>
+                <NavigationViewItem Icon="Library" Content="Job Cards" Tag="Job Cards"/>
+            </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Icon="Contact" Content="User" Tag="User" Tapped="NavigationViewItem_Tapped"/>
+            </NavigationView.PaneFooter>
+            <Frame x:Name="ContentFrame">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </NavigationView>
+    </Grid>
+</Page>
