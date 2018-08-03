@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Neptune.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,10 +25,13 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class ControlPage : Page
     {
+        ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
+        ObservableCollection<Position> Positions = new ObservableCollection<Position>();
+        ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
+
         public ControlPage()
         {
             this.InitializeComponent();
-            
         }
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -36,6 +42,15 @@ namespace Neptune.Views
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
+        }
+
+        private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
+        {
+            Modifiers = await NeptuneDatabase.RetrieveModifiersAsync();
+            Positions = await NeptuneDatabase.RetrievePositionsAsync(Modifiers);
+            Workers = await NeptuneDatabase.RetreiveWorkersAsync(Modifiers, Positions);
+
+            if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
         }
     }
 }

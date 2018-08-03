@@ -29,12 +29,12 @@ namespace Neptune.Models
             set => SetProperty(ref _PhoneNumber, value);
         }
 
-        private Position _position;
-        public Position Position
-        {
-            get => _position;
-            set => SetProperty(ref _position, value);
-        }
+        //private Position _position;
+        //public Position Position
+        //{
+        //    get => _position;
+        //    set => SetProperty(ref _position, value);
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
