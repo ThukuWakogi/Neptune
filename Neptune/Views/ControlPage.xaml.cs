@@ -25,6 +25,7 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class ControlPage : Page
     {
+        private int Id;
         ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
         ObservableCollection<Position> Positions = new ObservableCollection<Position>();
         ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
@@ -36,7 +37,33 @@ namespace Neptune.Views
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-
+            switch (((NavigationViewItem)args.SelectedItem).Tag.ToString())
+            {
+                case "Workers":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "Materials":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "Flies":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "Orders":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "Job Cards":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "User":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+            }
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -51,6 +78,12 @@ namespace Neptune.Views
             Workers = await NeptuneDatabase.RetreiveWorkersAsync(Modifiers, Positions);
 
             if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Id = (int)e.Parameter;
+            base.OnNavigatedTo(e);
         }
     }
 }

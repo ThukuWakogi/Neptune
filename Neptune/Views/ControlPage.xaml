@@ -10,7 +10,13 @@
     Loaded="Page_LoadedAsync">
 
     <Grid>
-        <NavigationView x:Name="ControlNavigationView" Margin="0,0,0,0" IsSettingsVisible="False" Header="Welcome" SelectionChanged="ControlNavigationView_SelectionChanged"  Canvas.ZIndex="0">
+        <NavigationView x:Name="ControlNavigationView" 
+                        Margin="0,0,0,0" 
+                        IsSettingsVisible="False" 
+                        Header="Welcome" 
+                        SelectionChanged="ControlNavigationView_SelectionChanged" 
+                        IsBackButtonVisible="Visible"
+                        IsBackEnabled="True">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="People" Content="Workers" Tag="Workers"/>
                 <NavigationViewItem Icon="Phone" Content="Customers" Tag="Customers"/>

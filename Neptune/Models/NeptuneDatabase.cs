@@ -11,14 +11,13 @@ namespace Neptune.Models
 {
     public static class NeptuneDatabase
     {
-        private static readonly string conn = "Server=localhost;Database=neptune;Uid=root;Pwd=root;";
-        private static MySqlConnection connect;
+        private static readonly string conn = "Server=localhost;Database=neptune;Uid=client;Pwd=client;";
+        private static MySqlConnection connect = new MySqlConnection(conn);
 
         public static async Task OpenConnectionAsync()
         {
             try
             {
-                connect = new MySqlConnection(conn);
                 await connect.OpenAsync();
             }
             catch (MySqlException e)
@@ -39,7 +38,7 @@ namespace Neptune.Models
                 cmd.CommandText = "SELECT id, password, salt FROM neptune.credentials WHERE id = @id;";
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Connection = connect;
-                MySqlDataReader reader = (await cmd.ExecuteReaderAsync() as MySqlDataReader);
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
                 //MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read()) if (Security.HashSHA1(password + reader["salt"].ToString()) == reader["password"].ToString()) authenticate = true;

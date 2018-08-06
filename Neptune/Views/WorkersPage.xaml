@@ -7,8 +7,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    <Page.Resources>
+        <Style x:Key="TextBoxMarginStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="GridMarginStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="ButtonMarginStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollMode="Auto">
+        <VariableSizedWrapGrid Orientation="Horizontal">
+            <Grid Style="{StaticResource GridMarginStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Workers" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxMarginStyle}" FontSize="30"/>
+                <TextBlock Text="Total Number of workers:" Grid.Row="1" Style="{StaticResource TextBoxMarginStyle}"/>
+                <TextBlock Name="TotalWorkersTextBlock" Text="0" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxMarginStyle}"/>
+                <TextBlock Text="Total Advanced Payments Requested:" Grid.Row="2" Style="{StaticResource TextBoxMarginStyle}"/>
+                <TextBlock Name="AdvancedPaymentsTextBlock" Text="0" Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBoxMarginStyle}"/>
+                <Button Name="ViewWorkersButton" Content="View Workers" Grid.Row="3"  Click="ViewWorkersButton_Click" Style="{StaticResource ButtonMarginStyle}"/>
+            </Grid>
+            <Grid Style="{StaticResource GridMarginStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Positions" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxMarginStyle}" FontSize="30"/>
+                <TextBlock Text="Directors:" Grid.Row="1" Style="{StaticResource  TextBoxMarginStyle}"/>
+                <TextBlock Text="0" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxMarginStyle}" HorizontalAlignment="Right"/>
+                <TextBlock Text="Managers:" Grid.Row="2" Style="{StaticResource  TextBoxMarginStyle}"/>
+                <TextBlock Text="0" Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBoxMarginStyle}" HorizontalAlignment="Right"/>
+                <TextBlock Text="Managers:" Grid.Row="2" Style="{StaticResource  TextBoxMarginStyle}"/>
+            </Grid>
+        </VariableSizedWrapGrid>
+    </ScrollViewer>
 </Page>

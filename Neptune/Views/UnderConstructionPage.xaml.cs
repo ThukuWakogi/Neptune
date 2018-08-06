@@ -20,16 +20,19 @@ namespace Neptune.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WorkersPage : Page
+    public sealed partial class UnderConstructionPage : Page
     {
-        public WorkersPage()
+        public UnderConstructionPage()
         {
             this.InitializeComponent();
         }
 
-        private void ViewWorkersButton_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter)) DevTextBox.Text = $"{e.Parameter.ToString()} Under Development";
+            else DevTextBox.Text = "Still Under Development";
 
+            base.OnNavigatedTo(e);
         }
     }
 }

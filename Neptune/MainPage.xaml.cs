@@ -37,7 +37,7 @@ namespace Neptune
 
             if (authentic)
             {
-                Frame.Navigate(typeof(ControlPage));
+                Frame.Navigate(typeof(ControlPage), Convert.ToInt32(AuthenticationIdTextBox.Text));
             }
             else
             {
