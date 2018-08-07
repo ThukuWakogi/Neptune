@@ -25,10 +25,10 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class ControlPage : Page
     {
-        private int Id;
-        ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
-        ObservableCollection<Position> Positions = new ObservableCollection<Position>();
-        ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
+        private static int Id;
+        public static ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
+        public static ObservableCollection<Position> Positions = new ObservableCollection<Position>();
+        public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
 
         public ControlPage()
         {
@@ -40,6 +40,10 @@ namespace Neptune.Views
             switch (((NavigationViewItem)args.SelectedItem).Tag.ToString())
             {
                 case "Workers":
+                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
+                    break;
+                case "Customers":
                     ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;

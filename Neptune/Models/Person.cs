@@ -21,5 +21,7 @@ namespace Neptune.Models
             get => _lastName;
             set => SetProperty(ref _lastName, value);
         }
+
+        public string FullName { get => $"{_firstName} {_lastName}"; }
     }
 }

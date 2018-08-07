@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Neptune.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,14 +24,22 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class WorkersPage : Page
     {
+        private ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
+
         public WorkersPage()
         {
             this.InitializeComponent();
         }
 
-        private void ViewWorkersButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void ViewWorkersButton_Click(object sender, RoutedEventArgs e)
+        //{
 
+        //}
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Workers = ControlPage.Workers;
+            base.OnNavigatedTo(e);
         }
     }
 }
