@@ -41,33 +41,21 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Positions">
-                <StackPanel>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                    <!--<CommandBar IsOpen="False" DefaultLabelPosition="Right" Name="CertainCommandBar">
-                        <AppBarButton Icon="Add" Label="Add"/>
-                        <AppBarButton Icon="ReShare" Label="Share"/>
-                        <AppBarButton Icon="Edit" Label="Edit"/>
-                        <CommandBar.SecondaryCommands>
-                            <AppBarButton Icon="Setting" Label="Settings"/>
-                        </CommandBar.SecondaryCommands>
-                    </CommandBar>-->
-                    <ListView>
-                        
-                    </ListView>
-                </StackPanel>
+                <GridView ItemsSource="{x:Bind Positions}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Position">
+                            <controls:PositionTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
             </PivotItem>
             <PivotItem Header="Advanced Payments">
-                <StackPanel>
-                    <CommandBar IsOpen="False" DefaultLabelPosition="Right">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <CommandBar IsOpen="False" DefaultLabelPosition="Right" >
                         <AppBarButton Icon="Add" Label="Add"/>
                         <AppBarButton Icon="ReShare" Label="Share"/>
                         <AppBarButton Icon="Edit" Label="Edit"/>
@@ -75,10 +63,13 @@
                             <AppBarButton Icon="Setting" Label="Settings"/>
                         </CommandBar.SecondaryCommands>
                     </CommandBar>
-                    <GridView>
-                        
-                    </GridView>
-                </StackPanel>
+                    <Grid Grid.Row="1">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+                            <TextBlock Text="Coming soon" TextWrapping="WrapWholeWords" TextAlignment="Center" FontSize="48" x:Name="DevTextBox"/>
+                            <TextBlock Text="You'll get it." Margin="0 20 0 0" TextWrapping="WrapWholeWords" TextAlignment="Center" FontSize="24"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>

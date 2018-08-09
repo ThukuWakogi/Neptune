@@ -25,7 +25,7 @@ namespace Neptune.Views
     public sealed partial class WorkersPage : Page
     {
         private ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
-        public Worker Worker { get { return DataContext as Worker; } }
+        private ObservableCollection<Position> Positions = new ObservableCollection<Position>();
 
         public WorkersPage()
         {
@@ -35,6 +35,7 @@ namespace Neptune.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Workers = ControlPage.Workers;
+            Positions = ControlPage.Positions;
             base.OnNavigatedTo(e);
         }
 

@@ -3,5 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Neptune">
-
+    <Application.Resources>
+        <Style x:Key="DirectorCellFormatTextBox" TargetType="TextBlock">
+            <!--<Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="25,0,0,0"/>-->
+        </Style>
+    </Application.Resources>
 </Application>
