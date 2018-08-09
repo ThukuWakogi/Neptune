@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="Neptune.Controls.WorkerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style x:Key="WorkercellFormatTextBox" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="WorkercellFormatPersonPicture" TargetType="PersonPicture">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid Name="WorkerTemplateGrid" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <PersonPicture DisplayName="{x:Bind Worker.FullName}" Width="35" Style="{StaticResource WorkercellFormatPersonPicture}"/>
+            <TextBlock Text="{x:Bind Worker.FirstName}" Grid.Column="1" Style="{StaticResource WorkercellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.LastName}" Grid.Column="2" Style="{StaticResource WorkercellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.PhoneNumber}" Grid.Column="3" Style="{StaticResource WorkercellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.Position.PositionName}" Grid.Column="4" Style="{StaticResource WorkercellFormatTextBox}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -25,21 +25,22 @@ namespace Neptune.Views
     public sealed partial class WorkersPage : Page
     {
         private ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
+        public Worker Worker { get { return DataContext as Worker; } }
 
         public WorkersPage()
         {
             this.InitializeComponent();
         }
 
-        //private void ViewWorkersButton_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Workers = ControlPage.Workers;
             base.OnNavigatedTo(e);
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            
         }
     }
 }
