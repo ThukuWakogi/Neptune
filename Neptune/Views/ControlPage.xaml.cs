@@ -25,7 +25,7 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class ControlPage : Page
     {
-        private static int Id;
+        public static int Id;
         public static ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
         public static ObservableCollection<Position> Positions = new ObservableCollection<Position>();
         public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
@@ -40,7 +40,7 @@ namespace Neptune.Views
             switch (((NavigationViewItem)args.SelectedItem).Tag.ToString())
             {
                 case "Workers":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ContentFrame.Navigate(typeof(WorkersPage));
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Customers":
@@ -63,16 +63,13 @@ namespace Neptune.Views
                     ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
-                case "User":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
-                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
-                    break;
             }
         }
 
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            ContentFrame.Navigate(typeof(WorkerDetailsPage), "ControlPage");
+            ControlNavigationView.AlwaysShowHeader = false;
         }
 
         private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
@@ -80,6 +77,7 @@ namespace Neptune.Views
             Modifiers = await NeptuneDatabase.RetrieveModifiersAsync();
             Positions = await NeptuneDatabase.RetrievePositionsAsync(Modifiers);
             Workers = await NeptuneDatabase.RetreiveWorkersAsync(Modifiers, Positions);
+            LoggedInUserNavigationViewItem.Content = NeptuneDatabase.WorkerSelector(Id, Workers).FullName;
 
             if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
         }
@@ -88,6 +86,11 @@ namespace Neptune.Views
         {
             Id = (int)e.Parameter;
             base.OnNavigatedTo(e);
+        }
+
+        private void ControlNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
     }
 }

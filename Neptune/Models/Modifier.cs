@@ -29,13 +29,6 @@ namespace Neptune.Models
             set => SetProperty(ref _PhoneNumber, value);
         }
 
-        //private Position _position;
-        //public Position Position
-        //{
-        //    get => _position;
-        //    set => SetProperty(ref _position, value);
-        //}
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
@@ -47,5 +40,7 @@ namespace Neptune.Models
         }
 
         public void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public string FullName { get => $"{_firstName} {_lastName}"; }
     }
 }

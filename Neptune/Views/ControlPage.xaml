@@ -16,21 +16,21 @@
                         Header="Welcome" 
                         SelectionChanged="ControlNavigationView_SelectionChanged" 
                         IsBackButtonVisible="Visible"
-                        IsBackEnabled="True">
+                        IsBackEnabled="True"
+                        BackRequested="ControlNavigationView_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="People" Content="Workers" Tag="Workers"/>
-                <NavigationViewItem Icon="Phone" Content="Customers" Tag="Customers"/>
+                <NavigationViewItem Icon="Shop" Content="Orders" Tag="Orders"/>
                 <NavigationViewItem Icon="Manage" Content="Materials" Tag="Materials"/>
                 <NavigationViewItem Content="Flies" Tag="Flies">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE24A;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Icon="Shop" Content="Orders" Tag="Orders"/>
                 <NavigationViewItem Icon="Library" Content="Job Cards" Tag="Job Cards"/>
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
-                <NavigationViewItem Icon="Contact" Content="User" Tag="User" Tapped="NavigationViewItem_Tapped"/>
+                <NavigationViewItem Icon="Contact" Content="User" Tag="User" Tapped="NavigationViewItem_Tapped" Name="LoggedInUserNavigationViewItem"/>
             </NavigationView.PaneFooter>
             <Frame x:Name="ContentFrame">
                 <Frame.ContentTransitions>

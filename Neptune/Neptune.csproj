@@ -120,6 +120,9 @@
     <Compile Include="Views\UnderConstructionPage.xaml.cs">
       <DependentUpon>UnderConstructionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WorkerDetailsPage.xaml.cs">
+      <DependentUpon>WorkerDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WorkersPage.xaml.cs">
       <DependentUpon>WorkersPage.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UnderConstructionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkerDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

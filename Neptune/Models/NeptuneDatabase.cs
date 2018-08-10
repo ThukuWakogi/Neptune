@@ -154,5 +154,14 @@ namespace Neptune.Models
 
             return returningPosition;
         }
+
+        public static Worker WorkerSelector(int id, ObservableCollection<Worker> workers)
+        {
+            Worker returningWorker = new Worker();
+
+            foreach (var worker in workers) if (worker.Id == id) returningWorker = worker;
+
+            return returningWorker;
+        }
     }
 }
