@@ -37,15 +37,17 @@ namespace Neptune
             AuthenticationProgressRing.IsActive = true;
             bool authentic = await NeptuneDatabase.AuthenticatedAsync(Convert.ToInt32(AuthenticationIdTextBox.Text), AuthenticationPasswordTextBox.Password);
 
-            if (authentic)
-            {
-                Frame.Navigate(typeof(ControlPage), Convert.ToInt32(AuthenticationIdTextBox.Text));
-            }
-            else
-            {
-                await new MessageDialog("You Not!").ShowAsync();
-            }
+            if (authentic) Frame.Navigate(typeof(ControlPage), Convert.ToInt32(AuthenticationIdTextBox.Text));
+            else await new MessageDialog("You Not!").ShowAsync();
+
             AuthenticationProgressRing.IsActive = false;
         }
+
+        private void ButtonEnabler() => 
+            AuthenticationSignInButton.IsEnabled = !string.IsNullOrWhiteSpace(AuthenticationIdTextBox.Text) && !string.IsNullOrWhiteSpace(AuthenticationPasswordTextBox.Password);
+
+        private void AuthenticationIdTextBox_TextChanged(object sender, TextChangedEventArgs e) => ButtonEnabler();
+
+        private void AuthenticationPasswordTextBox_PasswordChanged(object sender, RoutedEventArgs e) => ButtonEnabler();
     }
 }

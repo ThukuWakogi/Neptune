@@ -37,6 +37,8 @@ namespace Neptune.Views
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            ControlNavigationView.AlwaysShowHeader = true;
+
             switch (((NavigationViewItem)args.SelectedItem).Tag.ToString())
             {
                 case "Workers":
