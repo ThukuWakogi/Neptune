@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="Neptune.Controls.CustomersTemplateControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    SizeChanged="UserControl_SizeChanged">
+    <StackPanel>
+        <Grid Name="CustomerTemplateGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <PersonPicture DisplayName="{x:Bind Customer.FullName}" Style="{StaticResource ControlCellFormatPersonPicture}"/>
+            <TextBlock Grid.Column="1" Text="{x:Bind Customer.FirstName}" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Grid.Column="2" Text="{x:Bind Customer.LastName}" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <HyperlinkButton Grid.Column="3" Content="{x:Bind Customer.Email}" NavigateUri="{x:Bind Customer.EmailUri}" Style="{StaticResource ControlCellFormatHyperlinkButton}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

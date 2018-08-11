@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomersTemplateControl.xaml.cs">
+      <DependentUpon>CustomersTemplateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PositionTemplateControl.xaml.cs">
       <DependentUpon>PositionTemplateControl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\NeptuneDatabase.cs" />
@@ -116,6 +120,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ControlPage.xaml.cs">
       <DependentUpon>ControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UnderConstructionPage.xaml.cs">
       <DependentUpon>UnderConstructionPage.xaml</DependentUpon>
@@ -148,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CustomersTemplateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PositionTemplateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +172,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

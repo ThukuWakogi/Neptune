@@ -29,6 +29,7 @@ namespace Neptune.Views
         public static ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
         public static ObservableCollection<Position> Positions = new ObservableCollection<Position>();
         public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
+        public static ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
 
         public ControlPage()
         {
@@ -45,10 +46,6 @@ namespace Neptune.Views
                     ContentFrame.Navigate(typeof(WorkersPage));
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
-                case "Customers":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
-                    ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
-                    break;
                 case "Materials":
                     ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
@@ -58,7 +55,7 @@ namespace Neptune.Views
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Orders":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ContentFrame.Navigate(typeof(OrdersPage));
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Job Cards":
@@ -79,6 +76,7 @@ namespace Neptune.Views
             Modifiers = await NeptuneDatabase.RetrieveModifiersAsync();
             Positions = await NeptuneDatabase.RetrievePositionsAsync(Modifiers);
             Workers = await NeptuneDatabase.RetreiveWorkersAsync(Modifiers, Positions);
+            Customers = await NeptuneDatabase.RetrieveCustomersAsync(Modifiers);
             LoggedInUserNavigationViewItem.Content = NeptuneDatabase.WorkerSelector(Id, Workers).FullName;
 
             if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));

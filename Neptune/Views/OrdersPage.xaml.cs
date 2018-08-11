@@ -22,20 +22,18 @@ namespace Neptune.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WorkersPage : Page
+    public sealed partial class OrdersPage : Page
     {
-        private ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
-        private ObservableCollection<Position> Positions = new ObservableCollection<Position>();
+        private ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
 
-        public WorkersPage()
+        public OrdersPage()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Workers = ControlPage.Workers;
-            Positions = ControlPage.Positions;
+            Customers = ControlPage.Customers;
             base.OnNavigatedTo(e);
         }
     }

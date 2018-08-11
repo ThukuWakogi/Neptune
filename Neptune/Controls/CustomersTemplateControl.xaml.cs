@@ -18,11 +18,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Neptune.Controls
 {
-    public sealed partial class WorkerControl : UserControl
+    public sealed partial class CustomersTemplateControl : UserControl
     {
-        public Worker Worker { get => DataContext as Worker; }
+        private Customer Customer { get => DataContext as Customer; }
 
-        public WorkerControl()
+        public CustomersTemplateControl()
         {
             this.InitializeComponent();
             DataContextChanged += (s, e) => Bindings.Update();
@@ -30,7 +30,7 @@ namespace Neptune.Controls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            WorkerTemplateGrid.Width = (sender as WorkerControl).ActualWidth;
+            CustomerTemplateGrid.Width = (sender as CustomersTemplateControl).ActualWidth;
         }
     }
 }

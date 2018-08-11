@@ -9,16 +9,6 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     SizeChanged="UserControl_SizeChanged">
-    <UserControl.Resources>
-        <Style x:Key="WorkercellFormatTextBox" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="WorkercellFormatPersonPicture" TargetType="PersonPicture">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-    </UserControl.Resources>
     <StackPanel>
         <Grid Name="WorkerTemplateGrid" Margin="5">
             <Grid.ColumnDefinitions>
@@ -28,11 +18,12 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <PersonPicture DisplayName="{x:Bind Worker.FullName}" Width="35" Style="{StaticResource WorkercellFormatPersonPicture}"/>
-            <TextBlock Text="{x:Bind Worker.FirstName}" Grid.Column="1" Style="{StaticResource WorkercellFormatTextBox}"/>
-            <TextBlock Text="{x:Bind Worker.LastName}" Grid.Column="2" Style="{StaticResource WorkercellFormatTextBox}"/>
-            <TextBlock Text="{x:Bind Worker.PhoneNumber}" Grid.Column="3" Style="{StaticResource WorkercellFormatTextBox}"/>
-            <TextBlock Text="{x:Bind Worker.Position.PositionName}" Grid.Column="4" Style="{StaticResource WorkercellFormatTextBox}"/>
+            <!--<PersonPicture DisplayName="{x:Bind Worker.FullName}" Width="35" Style="{StaticResource ControlCellFormatPersonPicture}"/>-->
+            <PersonPicture DisplayName="{x:Bind Worker.FullName}" Width="35" />
+            <TextBlock Text="{x:Bind Worker.FirstName}" Grid.Column="1" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.LastName}" Grid.Column="2" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.PhoneNumber}" Grid.Column="3" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Text="{x:Bind Worker.Position.PositionName}" Grid.Column="4" Style="{StaticResource ControlCellFormatTextBox}"/>
         </Grid>
     </StackPanel>
 </UserControl>

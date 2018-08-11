@@ -50,13 +50,17 @@
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Right"
                            Style="{StaticResource TextBlockCommonLayoutStyle}"/>
-                <TextBox Name="AuthenticationIdTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxCommonLayoutStyle}" TextChanged="AuthenticationIdTextBox_TextChanged"/>
+                <TextBox Name="AuthenticationIdTextBox" 
+                         Grid.Row="0" Grid.Column="1" 
+                         Style="{StaticResource TextBoxCommonLayoutStyle}" 
+                         TextChanged="AuthenticationIdTextBox_TextChanged" 
+                         InputScope="Number"/>
                 <TextBlock Text="Password:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource TextBlockCommonLayoutStyle}"/>
                 <PasswordBox Name="AuthenticationPasswordTextBox" 
                              Grid.Column="1" 
                              Grid.Row="1" 
                              Style="{StaticResource PasswordBoxCommonLayoutStyle}" 
-                             PasswordChanged="AuthenticationPasswordTextBox_PasswordChanged"/>
+                             PasswordChanged="AuthenticationPasswordTextBox_PasswordChanged" />
             </Grid>
             <RelativePanel Margin="0,20,0,20">
                 <ProgressRing Name="AuthenticationProgressRing"

@@ -163,5 +163,35 @@ namespace Neptune.Models
 
             return returningWorker;
         }
+
+        public static async Task<ObservableCollection<Customer>> RetrieveCustomersAsync(ObservableCollection<Modifier> modifiers)
+        {
+            ObservableCollection<Customer> returningCustomers = new ObservableCollection<Customer>();
+
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                await OpenConnectionAsync();
+                cmd.CommandText = "SELECT id, first_name, last_name, email, date_added, added_by, date_last_updated, last_updated_by, deleted FROM neptune.customers WHERE deleted = 0;";
+                cmd.Connection = connect;
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
+
+                while (reader.Read()) returningCustomers.Add(new Customer
+                {
+                    Id = Convert.ToInt32(reader["id"]),
+                    FirstName = reader["first_name"].ToString(),
+                    LastName = reader["last_name"].ToString(),
+                    Email = reader["email"].ToString(),
+                    DateAdded = Convert.ToDateTime(reader["date_added"]),
+                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
+                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                });
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return returningCustomers;
+        }
     }
 }
