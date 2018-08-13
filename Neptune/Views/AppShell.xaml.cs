@@ -23,7 +23,7 @@ namespace Neptune.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ControlPage : Page
+    public sealed partial class AppShell : Page
     {
         public static int Id;
         public static ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
@@ -31,7 +31,7 @@ namespace Neptune.Views
         public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
         public static ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
 
-        public ControlPage()
+        public AppShell()
         {
             this.InitializeComponent();
         }

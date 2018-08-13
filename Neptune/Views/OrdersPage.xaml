@@ -16,6 +16,11 @@
                     <CommandBar IsOpen="False" DefaultLabelPosition="Right">
                         <AppBarButton Icon="Add" Label="Add" />
                         <AppBarButton Icon="Delete" Label="Delete"/>
+                        <AppBarButton Label="Select">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE762;"/>
+                            </AppBarButton.Icon>
+                        </AppBarButton>
                     </CommandBar>
                     <ListView ItemsSource="{x:Bind Customers}">
                         <ListView.ItemTemplate>

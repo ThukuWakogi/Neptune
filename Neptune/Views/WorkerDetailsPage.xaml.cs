@@ -48,13 +48,13 @@ namespace Neptune.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Workers = ControlPage.Workers;
+            Workers = AppShell.Workers;
 
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
             {
                 if (e.Parameter as string == "ControlPage")
                 {
-                    loggedInWorker = workerInView = NeptuneDatabase.WorkerSelector(ControlPage.Id, Workers);
+                    loggedInWorker = workerInView = NeptuneDatabase.WorkerSelector(AppShell.Id, Workers);
                     WorkerDetailDeleteButton.Visibility = Visibility.Collapsed;
                 }
             }

@@ -34,8 +34,8 @@ namespace Neptune.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Workers = ControlPage.Workers;
-            Positions = ControlPage.Positions;
+            Workers = AppShell.Workers;
+            Positions = AppShell.Positions;
             base.OnNavigatedTo(e);
         }
     }

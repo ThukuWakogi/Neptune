@@ -24,9 +24,9 @@ namespace Neptune
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AuthenticatePage : Page
     {
-        public MainPage()
+        public AuthenticatePage()
         {
             this.InitializeComponent();
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -37,7 +37,7 @@ namespace Neptune
             AuthenticationProgressRing.IsActive = true;
             bool authentic = await NeptuneDatabase.AuthenticatedAsync(Convert.ToInt32(AuthenticationIdTextBox.Text), AuthenticationPasswordTextBox.Password);
 
-            if (authentic) Frame.Navigate(typeof(ControlPage), Convert.ToInt32(AuthenticationIdTextBox.Text));
+            if (authentic) Frame.Navigate(typeof(AppShell), Convert.ToInt32(AuthenticationIdTextBox.Text));
             else await new MessageDialog("You Not!").ShowAsync();
 
             AuthenticationProgressRing.IsActive = false;

@@ -33,7 +33,7 @@ namespace Neptune.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Customers = ControlPage.Customers;
+            Customers = AppShell.Customers;
             base.OnNavigatedTo(e);
         }
     }

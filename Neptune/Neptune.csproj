@@ -104,8 +104,8 @@
     <Compile Include="Controls\WorkerControl.xaml.cs">
       <DependentUpon>WorkerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Authenticate.xaml.cs">
+      <DependentUpon>Authenticate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Modifier.cs" />
@@ -118,8 +118,8 @@
     <Compile Include="Models\Worker.cs" />
     <Compile Include="PayLoads\WorkersPagePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ControlPage.xaml.cs">
-      <DependentUpon>ControlPage.xaml</DependentUpon>
+    <Compile Include="Views\AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
@@ -167,11 +167,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Authenticate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ControlPage.xaml">
+    <Page Include="Views\AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
