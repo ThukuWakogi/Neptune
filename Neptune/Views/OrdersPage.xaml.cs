@@ -36,5 +36,25 @@ namespace Neptune.Views
             Customers = AppShell.Customers;
             base.OnNavigatedTo(e);
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(sender as AppBarToggleButton != null)
+            {
+                if (CustomersListView.SelectionMode == ListViewSelectionMode.Single)
+                {
+                    CustomersListView.SelectionMode = ListViewSelectionMode.Multiple;
+                    DeleteCustomerAppBarButton.Visibility = Visibility.Visible;
+                    AddCustomerAppBarButton.Visibility = Visibility.Collapsed;
+                }
+                else if (CustomersListView.SelectionMode == ListViewSelectionMode.Multiple)
+                {
+                    CustomersListView.SelectionMode = ListViewSelectionMode.Single;
+                    DeleteCustomerAppBarButton.Visibility = Visibility.Collapsed;
+                    AddCustomerAppBarButton.Visibility = Visibility.Visible;
+                }
+                else CustomersListView.SelectionMode = ListViewSelectionMode.Single;
+            }
+        }
     }
 }

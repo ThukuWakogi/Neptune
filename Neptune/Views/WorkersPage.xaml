@@ -14,8 +14,13 @@
             <PivotItem Header="Workers">
                 <StackPanel>
                     <CommandBar IsOpen="False" DefaultLabelPosition="Right">
-                        <AppBarButton Icon="Add" Label="Add" />
-                        <AppBarButton Icon="Delete" Label="Delete"/>
+                        <AppBarButton Icon="Add" Label="Add" Click="AppBarButton_Click"/>
+                        <AppBarButton Icon="Delete" Label="Delete" Click="AppBarButton_Click"/>
+                        <AppBarToggleButton Label="Select" Click="AppBarButton_Click">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon Glyph="&#xE762;"/>
+                            </AppBarToggleButton.Icon>
+                        </AppBarToggleButton>
                     </CommandBar>
                     <ListView ItemsSource="{x:Bind Workers}">
                         <ListView.ItemTemplate>

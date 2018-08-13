@@ -38,5 +38,15 @@ namespace Neptune.Views
             Positions = AppShell.Positions;
             base.OnNavigatedTo(e);
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
