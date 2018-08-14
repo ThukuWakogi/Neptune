@@ -108,10 +108,16 @@
       <DependentUpon>Authenticate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Fly.cs" />
+    <Compile Include="Models\FlyPattern.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\MaterialCategory.cs" />
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\NeptuneDatabase.cs" />
     <Compile Include="Models\ObservableModel.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Security.cs" />

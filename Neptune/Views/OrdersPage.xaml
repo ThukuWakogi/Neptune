@@ -33,47 +33,39 @@
             </PivotItem>
             <PivotItem Header="Orders">
                 <StackPanel>
-                    <CommandBar Name="OrdersCommandBar" DefaultLabelPosition="Right">
-                        <AppBarButton Name="AddOrderAppBarButton" Icon="Add" Label="Add"/>
-                        <AppBarButton Name="DeleteOrderAppBarButton" Icon="Delete" Label="Delete"/>
-                        <AppBarToggleButton Name="SelectOrderAppBarToggleButton" Label="Select" Click="AppBarButton_Click">
-                            <AppBarToggleButton.Icon>
-                                <FontIcon Glyph="&#xE762;"/>
-                            </AppBarToggleButton.Icon>
-                        </AppBarToggleButton>
-                    </CommandBar>
                     <SplitView IsPaneOpen="True"  DisplayMode="Inline">
                         <SplitView.Pane>
-                            <Grid>
+                            <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <CommandBar Background="Transparent" >
-                                    <AppBarButton  Icon="Add" Label="Add"/>
-                                    <AppBarButton Icon="Delete" Label="Delete"/>
-                                    <AppBarToggleButton  Label="Select" Click="AppBarButton_Click">
+                                <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
+                                <CommandBar Name="OrdersCommandBar" DefaultLabelPosition="Right">
+                                    <AppBarButton Name="AddOrderAppBarButton" Icon="Add" Label="Add"/>
+                                    <AppBarButton Name="DeleteOrderAppBarButton" Icon="Delete" Label="Delete"/>
+                                    <AppBarToggleButton Name="SelectOrderAppBarToggleButton" Label="Select" Click="AppBarButton_Click">
                                         <AppBarToggleButton.Icon>
                                             <FontIcon Glyph="&#xE762;"/>
                                         </AppBarToggleButton.Icon>
                                     </AppBarToggleButton>
                                 </CommandBar>
-                                <Grid Grid.Row="1" Margin="5" >
+                                <Grid Grid.Row="1" Margin="5,10,5,10" Padding="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="This Date" Grid.Row="0"/>
-                                        <TextBlock Text="This Time" Grid.Column="1" Grid.Row="0"/>
+                                        <TextBlock Text="This Date" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
+                                        <TextBlock Text="This Time" Margin="10,0,0,0" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1">
-                                        <TextBlock Text=" Order #1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="36"/>
+                                        <TextBlock Text=" Order #1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="26"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                        <TextBlock Text="This Customer" Grid.Row="2" />
-                                        <TextBlock Text="Number of Items: 11" Grid.Row="2" Grid.Column="1" />
+                                        <TextBlock Text="This Customer" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
+                                        <TextBlock Text="Number of Items: 11" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="10,5,0,0"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
