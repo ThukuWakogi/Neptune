@@ -15,6 +15,14 @@ namespace Neptune.Models
             set => SetProperty(ref _fly, value);
         }
 
+        private int _flySize;
+        public int FlySize
+        {
+            get => _flySize;
+            set => SetProperty(ref _flySize, value);
+        }
+        public string FlySizeWithHash { get => $"#{_flySize}"; }
+
         private Decimal _quantity;
         public Decimal Quantity
         {
