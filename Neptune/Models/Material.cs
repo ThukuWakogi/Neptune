@@ -22,11 +22,11 @@ namespace Neptune.Models
             set => SetProperty(ref _quantity, value);
         }
 
-        private Decimal _depletionAlert;
-        public Decimal DepletionAlert
+        private Decimal _depletionAlertLevel;
+        public Decimal DepletionAlertLevel
         {
-            get => _depletionAlert;
-            set => SetProperty(ref _depletionAlert, value);
+            get => _depletionAlertLevel;
+            set => SetProperty(ref _depletionAlertLevel, value);
         }
     }
 }

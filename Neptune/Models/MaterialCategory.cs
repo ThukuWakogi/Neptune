@@ -16,10 +16,16 @@ namespace Neptune.Models
         }
 
         private List<Material> _materials;
+
         public List<Material> Materials
         {
             get => _materials;
             set => SetProperty(ref _materials, value);
+        }
+
+        public MaterialCategory()
+        {
+            Materials = new List<Material>();
         }
     }
 }

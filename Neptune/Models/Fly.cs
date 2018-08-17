@@ -8,6 +8,13 @@ namespace Neptune.Models
 {
     public class Fly : ModelBase
     {
+        private string _flyNumber;
+        public string FlyNumber
+        {
+            get => _flyNumber;
+            set => SetProperty(ref _flyNumber, value);
+        }
+
         private string _flyName;
         public string FlyName
         {
@@ -22,11 +29,16 @@ namespace Neptune.Models
             set => SetProperty(ref _flyPattern, value);
         }
 
-        private List<Material> _materials;
-        public List<Material> Materials
+        private List<FlyMaterial> _materials;
+        public List<FlyMaterial> Materials
         {
             get => _materials;
             set => SetProperty(ref _materials, value);
+        }
+
+        public Fly()
+        {
+            Materials = new List<FlyMaterial>();
         }
     }
 }

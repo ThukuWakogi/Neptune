@@ -42,5 +42,14 @@ namespace Neptune.Models
             get => _lastUpdatedBy;
             set => SetProperty(ref _lastUpdatedBy, value);
         }
+
+        protected void SetModifierDetails(int id, DateTime dateAdded, Modifier addedBy, DateTime dateLastUpdated, Modifier lastUpdatedBy)
+        {
+            _id = id;
+            _dateAdded = dateAdded;
+            _addedBy = addedBy;
+            _dateLastUpdated = dateLastUpdated;
+            _lastUpdatedBy = lastUpdatedBy;
+        } 
     }
 }

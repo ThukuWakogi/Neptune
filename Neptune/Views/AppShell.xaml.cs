@@ -30,6 +30,9 @@ namespace Neptune.Views
         public static ObservableCollection<Position> Positions = new ObservableCollection<Position>();
         public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
         public static ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
+        public static ObservableCollection<MaterialCategory> MaterialCategories = new ObservableCollection<MaterialCategory>();
+        public static ObservableCollection<FlyPattern> FlyPatterns = new ObservableCollection<FlyPattern>();
+        public static ObservableCollection<Fly> Flies = new ObservableCollection<Fly>();
 
         public AppShell()
         {
@@ -73,13 +76,23 @@ namespace Neptune.Views
 
         private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
         {
+            await LoadDataAsync();
+            LoggedInUserNavigationViewItem.Content = NeptuneDatabase.WorkerSelector(Id, Workers).FullName;
+
+            if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
+        }
+
+        private async Task LoadDataAsync()
+        {
             Modifiers = await NeptuneDatabase.RetrieveModifiersAsync();
             Positions = await NeptuneDatabase.RetrievePositionsAsync(Modifiers);
             Workers = await NeptuneDatabase.RetreiveWorkersAsync(Modifiers, Positions);
             Customers = await NeptuneDatabase.RetrieveCustomersAsync(Modifiers);
-            LoggedInUserNavigationViewItem.Content = NeptuneDatabase.WorkerSelector(Id, Workers).FullName;
-
-            if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
+            MaterialCategories = await NeptuneDatabase.RetrieveMaterialCategoriesAsync(Modifiers);
+            await NeptuneDatabase.RetrieveMaterialsAsync(Modifiers, MaterialCategories);
+            FlyPatterns = await NeptuneDatabase.RetrieveFlyPatternsAsync(Modifiers);
+            Flies = await NeptuneDatabase.RetrieveFliesAsync(Modifiers, FlyPatterns);
+            await NeptuneDatabase.RetrieveFlyMaterialsAsync(Modifiers, FlyPatterns, Flies, MaterialCategories);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
