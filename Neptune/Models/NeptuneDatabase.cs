@@ -308,30 +308,19 @@ namespace Neptune.Models
 
         public static async Task RetrieveFlyMaterialsAsync( ObservableCollection<Modifier> modifiers, ObservableCollection<FlyPattern> flyPatterns, ObservableCollection<Fly> flies, ObservableCollection<MaterialCategory> materialCategories)
         {
-            ObservableCollection<FlyMaterial> flyMaterials = new ObservableCollection<FlyMaterial>();
-
             using (MySqlCommand cmd = new MySqlCommand())
             {
                 await OpenConnectionAsync();
                 cmd.CommandText = "SELECT fly_materials.id AS id, fly_id, material_id, material_category_id, part, fly_materials.date_added AS date_added, fly_materials.added_by AS added_by, fly_materials.date_last_updated AS date_last_updated , fly_materials.last_updated_by AS last_updated_by FROM neptune.fly_materials, neptune.materials WHERE fly_materials.deleted = 0 AND fly_materials.material_id = materials.id;";
                 cmd.Connection = connect;
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
-
-                //while(reader.Read()) flies.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["fly_id"])).Materials.Add(new FlyMaterial
-                //{
-                //    Id = Convert.ToInt32(reader["id"]),
-                //    Material = materialCategories.FirstOrDefault(p => (p.Materials).Id == )
-                //})
-
+                
                 while (reader.Read())
                 {
-                    //MaterialCategory materialCategory = materialCategories.FirstOrDefault(p => p.Id == Convert.ToInt32(""))
-                    MaterialCategory materialCategory = new MaterialCategory();
-                    materialCategory = materialCategories.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["material_category_id"]));
-                    flyMaterials.Add(new FlyMaterial
+                    flies.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["fly_id"])).Materials.Add(new FlyMaterial
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Material = materialCategory.Materials.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["material_id"])),
+                        Material = new MaterialCategory().Materials.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["material_id"])),
                         FlyPart = reader["part"].ToString(),
                         DateAdded = Convert.ToDateTime(reader["date_added"]),
                         AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
