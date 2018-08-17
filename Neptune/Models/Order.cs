@@ -21,5 +21,7 @@ namespace Neptune.Models
             get => _orderItems;
             set => SetProperty(ref _orderItems, value);
         }
+
+        public Order() => OrderItems = new List<OrderItem>();
     }
 }

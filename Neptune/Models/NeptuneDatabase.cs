@@ -306,7 +306,7 @@ namespace Neptune.Models
             return returningFlies;
         }
 
-        public static async Task RetrieveFlyMaterialsAsync( ObservableCollection<Modifier> modifiers, ObservableCollection<FlyPattern> flyPatterns, ObservableCollection<Fly> flies, ObservableCollection<MaterialCategory> materialCategories)
+        public static async Task RetrieveFlyMaterialsAsync(ObservableCollection<Modifier> modifiers, ObservableCollection<FlyPattern> flyPatterns, ObservableCollection<Fly> flies, ObservableCollection<MaterialCategory> materialCategories)
         {
             using (MySqlCommand cmd = new MySqlCommand())
             {
@@ -315,13 +315,39 @@ namespace Neptune.Models
                 cmd.Connection = connect;
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
                 
+                while (reader.Read()) flies.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["fly_id"])).Materials.Add(new FlyMaterial
+                {
+                    Id = Convert.ToInt32(reader["id"]),
+                    Material = new MaterialCategory().Materials.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["material_id"])),
+                    FlyPart = reader["part"].ToString(),
+                    DateAdded = Convert.ToDateTime(reader["date_added"]),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
+                    DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"]))
+                });
+
+                reader.Close();
+                CloseConnection();
+            }
+        }
+
+        public static async Task<ObservableCollection<Order>> RetrieveOrdersAsync(ObservableCollection<Modifier> modifiers, ObservableCollection<Customer> customers)
+        {
+            ObservableCollection<Order> returningOrders = new ObservableCollection<Order>();
+
+            using(MySqlCommand cmd = new MySqlCommand())
+            {
+                await OpenConnectionAsync();
+                cmd.CommandText = "SELECT id, customer_id, date_added, added_by, date_last_updated, last_updated_by FROM neptune.orders WHERE deleted = 0;";
+                cmd.Connection = connect;
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
+
                 while (reader.Read())
                 {
-                    flies.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["fly_id"])).Materials.Add(new FlyMaterial
+                    returningOrders.Add(new Order
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Material = new MaterialCategory().Materials.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["material_id"])),
-                        FlyPart = reader["part"].ToString(),
+                        Customer = customers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["customer_id"])),
                         DateAdded = Convert.ToDateTime(reader["date_added"]),
                         AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                         DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
@@ -332,8 +358,8 @@ namespace Neptune.Models
                 reader.Close();
                 CloseConnection();
             }
-        }
 
-        //TODO: RetrieveOrders
+            return returningOrders;
+        }
     }
 }

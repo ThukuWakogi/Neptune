@@ -33,6 +33,7 @@ namespace Neptune.Views
         public static ObservableCollection<MaterialCategory> MaterialCategories = new ObservableCollection<MaterialCategory>();
         public static ObservableCollection<FlyPattern> FlyPatterns = new ObservableCollection<FlyPattern>();
         public static ObservableCollection<Fly> Flies = new ObservableCollection<Fly>();
+        public static ObservableCollection<Order> Orders = new ObservableCollection<Order>();
 
         public AppShell()
         {
@@ -93,6 +94,7 @@ namespace Neptune.Views
             FlyPatterns = await NeptuneDatabase.RetrieveFlyPatternsAsync(Modifiers);
             Flies = await NeptuneDatabase.RetrieveFliesAsync(Modifiers, FlyPatterns);
             await NeptuneDatabase.RetrieveFlyMaterialsAsync(Modifiers, FlyPatterns, Flies, MaterialCategories);
+            Orders = await NeptuneDatabase.RetrieveOrdersAsync(Modifiers, Customers);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
