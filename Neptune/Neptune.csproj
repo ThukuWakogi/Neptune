@@ -98,6 +98,9 @@
     <Compile Include="Controls\CustomersTemplateControl.xaml.cs">
       <DependentUpon>CustomersTemplateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OrderTemplateControl.xaml.cs">
+      <DependentUpon>OrderTemplateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PositionTemplateControl.xaml.cs">
       <DependentUpon>PositionTemplateControl.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Controls\CustomersTemplateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderTemplateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

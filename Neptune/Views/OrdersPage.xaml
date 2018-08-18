@@ -50,7 +50,7 @@
                                         </AppBarToggleButton.Icon>
                                     </AppBarToggleButton>
                                 </CommandBar>
-                                <Grid Grid.Row="1" Margin="5,10,5,10" Padding="5">
+                                <!--<Grid Grid.Row="1" Margin="5,10,5,10" Padding="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -67,7 +67,14 @@
                                         <TextBlock Text="This Customer" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
                                         <TextBlock Text="Number of Items: 11" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="10,5,0,0"/>
                                     </StackPanel>
-                                </Grid>
+                                </Grid>-->
+                                <ListView Name="OrdersListView" ItemsSource="{x:Bind Orders}" SelectionMode="Single" Grid.Row="1">
+                                    <ListView.ItemTemplate >
+                                        <DataTemplate x:DataType="data:Order">
+                                            <controls:OrderTemplateControl/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Grid>
                         </SplitView.Pane>
                         <SplitView.Content>

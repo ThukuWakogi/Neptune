@@ -23,5 +23,7 @@ namespace Neptune.Models
         }
 
         public Order() => OrderItems = new List<OrderItem>();
+
+        public string DisplayOrderNo { get => $"Order No.{Id}"; }
     }
 }

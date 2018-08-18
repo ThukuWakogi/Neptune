@@ -18,11 +18,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Neptune.Controls
 {
-    public sealed partial class PositionTemplateControl : UserControl
+    public sealed partial class OrderTemplateControl : UserControl
     {
-        private Position Position { get => DataContext as Position; }
+        private Order Order { get => DataContext as Order; }
 
-        public PositionTemplateControl()
+        public OrderTemplateControl()
         {
             this.InitializeComponent();
             DataContextChanged += (s, e) => Bindings.Update();

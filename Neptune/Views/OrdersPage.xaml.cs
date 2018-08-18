@@ -25,6 +25,7 @@ namespace Neptune.Views
     public sealed partial class OrdersPage : Page
     {
         private ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
+        private ObservableCollection<Order> Orders = new ObservableCollection<Order>();
 
         public OrdersPage()
         {
@@ -34,6 +35,7 @@ namespace Neptune.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Customers = AppShell.Customers;
+            Orders = AppShell.Orders;
             base.OnNavigatedTo(e);
         }
 
