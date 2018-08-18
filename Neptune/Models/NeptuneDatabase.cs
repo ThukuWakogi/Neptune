@@ -334,5 +334,29 @@ namespace Neptune.Models
 
             return returningOrders;
         }
+
+        public static async Task RetrieveOrderItemsAsync(ObservableCollection<Modifier> modifiers, ObservableCollection<Order> orders, ObservableCollection<Fly> flies)
+        {
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                await OpenConnectionAsync();
+                cmd.CommandText = "SELECT id, order_id, fly_id, fly_size, dozens, is_complete, date_added, added_by, date_last_updated, last_updated_by FROM neptune.order_items WHERE deleted = 0;";
+                cmd.Connection = connect;
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
+
+                while (reader.Read()) orders.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["order_id"])).OrderItems.Add(new OrderItem
+                {
+                    Id = Convert.ToInt32(reader["id"]),
+                    Fly = flies.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["fly_id"])),
+                    FlySize = Convert.ToInt32(reader["fly_size"]),
+                    Dozens = Convert.ToInt32(reader["dozens"]),
+                    IsComplete = Convert.ToBoolean(reader["is_complete"]),
+                    DateAdded = Convert.ToDateTime(reader["date_added"]),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
+                    DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"]))
+                });
+            }
+        }
     }
 }

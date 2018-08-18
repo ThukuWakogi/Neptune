@@ -9,7 +9,7 @@ namespace Neptune.Models
     public class OrderItem : ModelBase
     {
         private Fly _fly;
-        private Fly Fly
+        public Fly Fly
         {
             get => _fly;
             set => SetProperty(ref _fly, value);
@@ -23,11 +23,11 @@ namespace Neptune.Models
         }
         public string FlySizeWithHash { get => $"#{_flySize}"; }
 
-        private Decimal _quantity;
-        public Decimal Quantity
+        private Decimal _dozens;
+        public Decimal Dozens
         {
-            get => _quantity;
-            set => SetProperty(ref _quantity, value);
+            get => _dozens;
+            set => SetProperty(ref _dozens, value);
         }
 
         private bool _isComplete;

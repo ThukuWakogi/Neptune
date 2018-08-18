@@ -95,6 +95,7 @@ namespace Neptune.Views
             Flies = await NeptuneDatabase.RetrieveFliesAsync(Modifiers, FlyPatterns);
             await NeptuneDatabase.RetrieveFlyMaterialsAsync(Modifiers, FlyPatterns, Flies, MaterialCategories);
             Orders = await NeptuneDatabase.RetrieveOrdersAsync(Modifiers, Customers);
+            await NeptuneDatabase.RetrieveOrderItemsAsync(Modifiers, Orders, Flies);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
