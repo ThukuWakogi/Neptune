@@ -36,9 +36,6 @@ namespace Neptune.Models
             set => SetProperty(ref _materials, value);
         }
 
-        public Fly()
-        {
-            Materials = new List<FlyMaterial>();
-        }
+        public Fly() => Materials = new List<FlyMaterial>();
     }
 }

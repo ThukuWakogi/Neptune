@@ -25,7 +25,7 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class AppShell : Page
     {
-        public static int Id;
+        public static int _loggedInUserId;
         public static ObservableCollection<Modifier> Modifiers = new ObservableCollection<Modifier>();
         public static ObservableCollection<Position> Positions = new ObservableCollection<Position>();
         public static ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
@@ -78,7 +78,7 @@ namespace Neptune.Views
         private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
         {
             await LoadDataAsync();
-            LoggedInUserNavigationViewItem.Content = NeptuneDatabase.WorkerSelector(Id, Workers).FullName;
+            LoggedInUserNavigationViewItem.Content = Workers.FirstOrDefault(p => p.Id == _loggedInUserId).FullName;
 
             if (ContentFrame.Content == null) ContentFrame.Navigate(typeof(WorkersPage));
         }
@@ -99,7 +99,7 @@ namespace Neptune.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Id = (int)e.Parameter;
+            _loggedInUserId = (int)e.Parameter;
             base.OnNavigatedTo(e);
         }
 

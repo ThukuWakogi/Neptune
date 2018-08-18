@@ -54,7 +54,7 @@ namespace Neptune.Views
             {
                 if (e.Parameter as string == "ControlPage")
                 {
-                    loggedInWorker = workerInView = NeptuneDatabase.WorkerSelector(AppShell.Id, Workers);
+                    loggedInWorker = workerInView = AppShell.Workers.FirstOrDefault(p => p.Id == AppShell._loggedInUserId);
                     WorkerDetailDeleteButton.Visibility = Visibility.Collapsed;
                 }
             }

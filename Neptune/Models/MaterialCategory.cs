@@ -23,9 +23,6 @@ namespace Neptune.Models
             set => SetProperty(ref _materials, value);
         }
 
-        public MaterialCategory()
-        {
-            Materials = new List<Material>();
-        }
+        public MaterialCategory() => Materials = new List<Material>();
     }
 }

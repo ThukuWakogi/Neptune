@@ -94,9 +94,9 @@ namespace Neptune.Models
                     PositionName = reader["position"].ToString(),
                     Salary = Convert.ToDecimal(reader["salary"]),
                     DateAdded = Convert.ToDateTime(reader["date_added"]),
-                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
-                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"])),
                 });
 
                 reader.Close();
@@ -104,15 +104,6 @@ namespace Neptune.Models
             }
 
             return positionsToReturn;
-        }
-
-        private static Modifier ModifierSelector(int id, ObservableCollection<Modifier> modifiers)
-        {
-            Modifier modifierToReturn = new Modifier();
-
-            foreach (var modifier in modifiers) if (modifier.Id == id) modifierToReturn = modifier;
-
-            return modifierToReturn;
         }
 
         public static async Task<ObservableCollection<Worker>> RetreiveWorkersAsync(ObservableCollection<Modifier> modifiers, ObservableCollection<Position> positions)
@@ -132,11 +123,11 @@ namespace Neptune.Models
                     FirstName = reader["first_name"].ToString(),
                     LastName = reader["last_name"].ToString(),
                     PhoneNumber = reader["phone_number"].ToString(),
-                    Position = PositionSelector(Convert.ToInt32(reader["id"]), positions),
+                    Position = positions.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["position_id"])),
                     DateAdded = Convert.ToDateTime(reader["date_added"]),
-                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
-                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"])),
                 });
 
                 reader.Close();
@@ -144,24 +135,6 @@ namespace Neptune.Models
             }
 
             return WorkersToReturn;
-        }
-
-        private static Position PositionSelector(int id, ObservableCollection<Position> positions)
-        {
-            Position returningPosition = new Position();
-
-            foreach (var position in positions) if (position.Id == id) returningPosition = position;
-
-            return returningPosition;
-        }
-
-        public static Worker WorkerSelector(int id, ObservableCollection<Worker> workers)
-        {
-            Worker returningWorker = new Worker();
-
-            foreach (var worker in workers) if (worker.Id == id) returningWorker = worker;
-
-            return returningWorker;
         }
 
         public static async Task<ObservableCollection<Customer>> RetrieveCustomersAsync(ObservableCollection<Modifier> modifiers)
@@ -182,9 +155,9 @@ namespace Neptune.Models
                     LastName = reader["last_name"].ToString(),
                     Email = reader["email"].ToString(),
                     DateAdded = Convert.ToDateTime(reader["date_added"]),
-                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
-                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"])),
                 });
 
                 reader.Close();
@@ -210,9 +183,9 @@ namespace Neptune.Models
                     Id = Convert.ToInt32(reader["id"]),
                     Category = reader["category"].ToString(),
                     DateAdded = Convert.ToDateTime(reader["date_added"]),
-                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
-                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"])),
                 });
 
                 reader.Close();
@@ -238,9 +211,9 @@ namespace Neptune.Models
                     Quantity = Convert.ToDecimal(reader["quantity"]),
                     DepletionAlertLevel = Convert.ToDecimal(reader["depletion_alert_level"]),
                     DateAdded = Convert.ToDateTime(reader["date_added"]),
-                    AddedBy = ModifierSelector(Convert.ToInt32(reader["added_by"]), modifiers),
+                    AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
-                    LastUpdatedBy = ModifierSelector(Convert.ToInt32(reader["last_updated_by"]), modifiers)
+                    LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"])),
                 });
 
                 reader.Close();
