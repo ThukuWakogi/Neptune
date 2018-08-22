@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="Neptune.Controls.OrderItemTemplateControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="UserControl_SizeChanged">
+    <StackPanel>
+        <Grid Margin="5" Name="OrderItemTemplateGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="FlyTextBox" Text="{x:Bind OrderItem.Fly.DisplayFlyNumberAndName}" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Name="FlySizeTextBox" Text="{x:Bind OrderItem.DisplayFlySizeWithHash}" Grid.Column="1" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <TextBlock Name="DozensTextBox" Text="{x:Bind OrderItem.Dozens}" Grid.Column="2" Style="{StaticResource ControlCellFormatTextBox}"/>
+            <CheckBox Name="CompleteCheckBox" Content="Complete" Grid.Column="3" Style="{StaticResource ControlCellFormatCheckBox}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

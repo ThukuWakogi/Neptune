@@ -39,9 +39,39 @@ namespace Neptune.Views
             base.OnNavigatedTo(e);
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void OrdersListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if(sender as AppBarToggleButton != null)
+            OrderItemsListView.ItemsSource = (e.ClickedItem as Order).OrderItems;
+        }
+
+        private void SelectOrderAppBarToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender as AppBarToggleButton != null)
+            {
+                if (OrdersListView.SelectionMode == ListViewSelectionMode.Single)
+                {
+                    OrdersListView.SelectionMode = ListViewSelectionMode.Multiple;
+                    DeleteOrderAppBarButton.Visibility = Visibility.Visible;
+                    AddOrderAppBarButton.Visibility = Visibility.Collapsed;
+                }
+                else if (OrdersListView.SelectionMode == ListViewSelectionMode.Multiple)
+                {
+                    OrdersListView.SelectionMode = ListViewSelectionMode.Single;
+                    DeleteOrderAppBarButton.Visibility = Visibility.Collapsed;
+                    AddOrderAppBarButton.Visibility = Visibility.Visible;
+                }
+                else OrdersListView.SelectionMode = ListViewSelectionMode.Single;
+            }
+        }
+
+        private void SelectOrderItemsAppBarToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void SelectCustomerAppBarToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender as AppBarToggleButton != null)
             {
                 if (CustomersListView.SelectionMode == ListViewSelectionMode.Single)
                 {
@@ -57,6 +87,11 @@ namespace Neptune.Views
                 }
                 else CustomersListView.SelectionMode = ListViewSelectionMode.Single;
             }
+        }
+
+        private void OrderItemsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

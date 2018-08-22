@@ -25,5 +25,6 @@ namespace Neptune.Models
         public Order() => OrderItems = new List<OrderItem>();
 
         public string DisplayOrderNo { get => $"Order No.{Id}"; }
+        public string DisplayOrderItemNumber { get => (OrderItems.Count == 1) ? $"{OrderItems.Count} item" : $"{OrderItems.Count} items"; }
     }
 }

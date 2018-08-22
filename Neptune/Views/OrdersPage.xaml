@@ -14,9 +14,9 @@
             <PivotItem Header="Customers">
                 <StackPanel>
                     <CommandBar Name="CustomersCommandBar" DefaultLabelPosition="Right">
-                        <AppBarButton Name="AddCustomerAppBarButton" Icon="Add" Label="Add"/>
-                        <AppBarButton Name="DeleteCustomerAppBarButton" Icon="Delete" Label="Delete"/>
-                        <AppBarToggleButton Name="SelectCustomerAppBarToggleButton" Label="Select" Click="AppBarButton_Click">
+                        <AppBarButton Name="AddCustomerAppBarButton" Icon="Add" Label="Add" Visibility="Visible"/>
+                        <AppBarButton Name="DeleteCustomerAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                        <AppBarToggleButton Name="SelectCustomerAppBarToggleButton" Label="Select" Click="SelectCustomerAppBarToggleButton_Click">
                             <AppBarToggleButton.Icon>
                                 <FontIcon Glyph="&#xE762;"/>
                             </AppBarToggleButton.Icon>
@@ -42,33 +42,15 @@
                                 </Grid.RowDefinitions>
                                 <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
                                 <CommandBar Name="OrdersCommandBar" DefaultLabelPosition="Right">
-                                    <AppBarButton Name="AddOrderAppBarButton" Icon="Add" Label="Add"/>
-                                    <AppBarButton Name="DeleteOrderAppBarButton" Icon="Delete" Label="Delete"/>
-                                    <AppBarToggleButton Name="SelectOrderAppBarToggleButton" Label="Select" Click="AppBarButton_Click">
+                                    <AppBarButton Name="AddOrderAppBarButton" Icon="Add" Label="Add" Visibility="Visible"/>
+                                    <AppBarButton Name="DeleteOrderAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                                    <AppBarToggleButton Name="SelectOrderAppBarToggleButton" Label="Select" Click="SelectOrderAppBarToggleButton_Click">
                                         <AppBarToggleButton.Icon>
                                             <FontIcon Glyph="&#xE762;"/>
                                         </AppBarToggleButton.Icon>
                                     </AppBarToggleButton>
                                 </CommandBar>
-                                <!--<Grid Grid.Row="1" Margin="5,10,5,10" Padding="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="This Date" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
-                                        <TextBlock Text="This Time" Margin="10,0,0,0" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="1">
-                                        <TextBlock Text=" Order #1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="26"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="2" Orientation="Horizontal">
-                                        <TextBlock Text="This Customer" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
-                                        <TextBlock Text="Number of Items: 11" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="10,5,0,0"/>
-                                    </StackPanel>
-                                </Grid>-->
-                                <ListView Name="OrdersListView" ItemsSource="{x:Bind Orders}" SelectionMode="Single" Grid.Row="1">
+                                <ListView Name="OrdersListView" ItemsSource="{x:Bind Orders}" SelectionMode="Single" Grid.Row="1" IsItemClickEnabled="True" ItemClick="OrdersListView_ItemClick">
                                     <ListView.ItemTemplate >
                                         <DataTemplate x:DataType="data:Order">
                                             <controls:OrderTemplateControl/>
@@ -78,7 +60,28 @@
                             </Grid>
                         </SplitView.Pane>
                         <SplitView.Content>
-                            <TextBlock Text="Issa Content"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <CommandBar Name="OrderItemsCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+                                    <AppBarButton Name="AddOrderItemsAppBarButton" Icon="Add" Label="Add" Visibility="Visible"/>
+                                    <AppBarButton Name="DeleteOrderItemsAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                                    <AppBarToggleButton Name="SelectOrderItemsAppBarToggleButton" Label="Select" Click="SelectOrderItemsAppBarToggleButton_Click">
+                                        <AppBarToggleButton.Icon>
+                                            <FontIcon Glyph="&#xE762;"/>
+                                        </AppBarToggleButton.Icon>
+                                    </AppBarToggleButton>
+                                </CommandBar>
+                                <ListView Name="OrderItemsListView" Grid.Row="1" SelectionMode="Single" IsItemClickEnabled="False" ItemClick="OrderItemsListView_ItemClick">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="data:OrderItem">
+                                            <controls:OrderItemTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
                         </SplitView.Content>
                     </SplitView>
                 </StackPanel>

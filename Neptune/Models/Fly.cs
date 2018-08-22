@@ -37,5 +37,7 @@ namespace Neptune.Models
         }
 
         public Fly() => Materials = new List<FlyMaterial>();
+
+        public string DisplayFlyNumberAndName { get => $"{FlyNumber} {FlyName}"; }
     }
 }

@@ -21,7 +21,7 @@ namespace Neptune.Models
             get => _flySize;
             set => SetProperty(ref _flySize, value);
         }
-        public string FlySizeWithHash { get => $"#{_flySize}"; }
+        public string DisplayFlySizeWithHash { get => $"#{_flySize}"; }
 
         private Decimal _dozens;
         public Decimal Dozens
