@@ -98,6 +98,12 @@
     <Compile Include="Controls\CustomersTemplateControl.xaml.cs">
       <DependentUpon>CustomersTemplateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MaterialCategoryItemsControlTemplate.xaml.cs">
+      <DependentUpon>MaterialCategoryItemsControlTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MaterialCategotyTemplateControl.xaml.cs">
+      <DependentUpon>MaterialCategotyTemplateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OrderItemTemplateControl.xaml.cs">
       <DependentUpon>OrderItemTemplateControl.xaml</DependentUpon>
     </Compile>
@@ -129,10 +135,17 @@
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Security.cs" />
     <Compile Include="Models\Worker.cs" />
+    <Compile Include="PayLoads\MaterialsItemPagePayLoad.cs" />
     <Compile Include="PayLoads\WorkersPagePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaterialItemsPage.xaml.cs">
+      <DependentUpon>MaterialItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MaterialsPage.xaml.cs">
+      <DependentUpon>MaterialsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
@@ -172,6 +185,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\MaterialCategoryItemsControlTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MaterialCategotyTemplateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OrderItemTemplateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +214,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MaterialItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MaterialsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

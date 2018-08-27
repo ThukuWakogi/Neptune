@@ -18,21 +18,19 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Neptune.Controls
 {
-    public sealed partial class OrderItemTemplateControl : UserControl
+    public sealed partial class MaterialCategoryItemsControlTemplate : UserControl
     {
-        private OrderItem OrderItem { get => DataContext as OrderItem; }
+        private Material Material { get => DataContext as Material; }
 
-        public OrderItemTemplateControl()
+        public MaterialCategoryItemsControlTemplate()
         {
             this.InitializeComponent();
             DataContextChanged += (s, e) => Bindings.Update();
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e) => OrderItemTemplateGrid.Width = (sender as OrderItemTemplateControl).ActualWidth;
-
-        private void CompleteCheckBox_CheckChanged(object sender, RoutedEventArgs e)
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-
+            MaterialcategoryControlTemplateGrid.Width = (sender as MaterialCategoryItemsControlTemplate).ActualWidth;
         }
     }
 }

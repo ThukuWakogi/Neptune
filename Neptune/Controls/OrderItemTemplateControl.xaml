@@ -10,7 +10,7 @@
     <StackPanel>
         <Grid Margin="5" Name="OrderItemTemplateGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2.5*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1.5*"/>
@@ -21,7 +21,13 @@
             <TextBlock Name="FlyTextBox" Text="{x:Bind OrderItem.Fly.DisplayFlyNumberAndName}" Style="{StaticResource ControlCellFormatTextBox}"/>
             <TextBlock Name="FlySizeTextBox" Text="{x:Bind OrderItem.DisplayFlySizeWithHash}" Grid.Column="1" Style="{StaticResource ControlCellFormatTextBox}"/>
             <TextBlock Name="DozensTextBox" Text="{x:Bind OrderItem.Dozens}" Grid.Column="2" Style="{StaticResource ControlCellFormatTextBox}"/>
-            <CheckBox Name="CompleteCheckBox" Content="Complete" Grid.Column="3" Style="{StaticResource ControlCellFormatCheckBox}"/>
+            <CheckBox Name="CompleteCheckBox" 
+                      Content="Complete" 
+                      Grid.Column="3" 
+                      IsChecked="{x:Bind OrderItem.IsComplete}" 
+                      Style="{StaticResource ControlCellFormatCheckBox}"
+                      Checked="CompleteCheckBox_CheckChanged"
+                      Unchecked="CompleteCheckBox_CheckChanged"/>
         </Grid>
     </StackPanel>
 </UserControl>

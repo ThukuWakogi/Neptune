@@ -16,7 +16,6 @@ namespace Neptune.Models
         }
 
         private List<Material> _materials;
-
         public List<Material> Materials
         {
             get => _materials;
@@ -24,5 +23,7 @@ namespace Neptune.Models
         }
 
         public MaterialCategory() => Materials = new List<Material>();
+
+        public string DisplayMaterialsNumber { get => _materials.Count() == 1 ? $"{_materials.Count()} material" : $"{_materials.Count()} materials"; }
     }
 }

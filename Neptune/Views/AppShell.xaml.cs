@@ -38,6 +38,7 @@ namespace Neptune.Views
         public AppShell()
         {
             this.InitializeComponent();
+            MaterialsPage.OnNavigatedParentReady += OnViewMaterial;
         }
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -51,7 +52,7 @@ namespace Neptune.Views
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Materials":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ContentFrame.Navigate(typeof(MaterialsPage));
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Flies":
@@ -107,6 +108,12 @@ namespace Neptune.Views
         private void ControlNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (ContentFrame.CanGoBack) ContentFrame.GoBack();
+        }
+
+        private void OnViewMaterial(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(MaterialItemsPage), (e as ItemClickEventArgs).ClickedItem as MaterialCategory);
+            //ControlNavigationView.Header = $"Materials: {((e as ItemClickEventArgs).ClickedItem as MaterialCategory).Category}";
         }
     }
 }
