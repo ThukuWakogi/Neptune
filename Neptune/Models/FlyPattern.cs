@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptune.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,12 @@ namespace Neptune.Models
         {
             get => _flyPatternName;
             set => SetProperty(ref _flyPatternName, value);
+        }
+
+        public string DisplayNumberOfFliesInPattern
+        {
+            get => 
+                (AppShell.Flies.Count(x => x.FlyPattern.Id == Id) == 1) ? $"{AppShell.Flies.Count(x => x.FlyPattern.Id == Id)} fly" : $"{AppShell.Flies.Count(x => x.FlyPattern.Id == Id)} flies";
         }
     }
 }

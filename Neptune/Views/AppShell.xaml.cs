@@ -56,7 +56,7 @@ namespace Neptune.Views
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Flies":
-                    ContentFrame.Navigate(typeof(UnderConstructionPage), ((NavigationViewItem)args.SelectedItem).Tag.ToString());
+                    ContentFrame.Navigate(typeof(FliesPage));
                     ControlNavigationView.Header = ((NavigationViewItem)args.SelectedItem).Tag.ToString();
                     break;
                 case "Orders":
@@ -110,10 +110,6 @@ namespace Neptune.Views
             if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
 
-        private void OnViewMaterial(object sender, RoutedEventArgs e)
-        {
-            ContentFrame.Navigate(typeof(MaterialItemsPage), (e as ItemClickEventArgs).ClickedItem as MaterialCategory);
-            //ControlNavigationView.Header = $"Materials: {((e as ItemClickEventArgs).ClickedItem as MaterialCategory).Category}";
-        }
+        private void OnViewMaterial(object sender, RoutedEventArgs e) => ContentFrame.Navigate(typeof(MaterialItemsPage), (e as ItemClickEventArgs).ClickedItem as MaterialCategory);
     }
 }

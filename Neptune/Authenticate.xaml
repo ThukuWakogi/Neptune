@@ -60,7 +60,8 @@
                              Grid.Column="1" 
                              Grid.Row="1" 
                              Style="{StaticResource PasswordBoxCommonLayoutStyle}" 
-                             PasswordChanged="AuthenticationPasswordTextBox_PasswordChanged" />
+                             PasswordChanged="AuthenticationPasswordTextBox_PasswordChanged"
+                             KeyDown="AuthenticationPasswordTextBox_KeyDownAsync"/>
             </Grid>
             <RelativePanel Margin="0,20,0,20">
                 <ProgressRing Name="AuthenticationProgressRing"

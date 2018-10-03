@@ -29,7 +29,7 @@
         <ListView Name="MaterialsListView" ItemsSource="{x:Bind MaterialCategory.Materials}" Grid.Row="2" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Material">
-                    <controls:MaterialCategoryItemsControlTemplate/>
+                    <controls:MaterialCategoryItemsControlTemplate HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

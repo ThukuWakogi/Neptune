@@ -13,6 +13,7 @@
         <Pivot>
             <PivotItem Header="Workers">
                 <StackPanel>
+                    <TextBlock Text="Add delete or edit worker details" Style="{StaticResource PivotDescriptionTextBox}"/>
                     <CommandBar IsOpen="False" DefaultLabelPosition="Right">
                         <AppBarButton Icon="Add" Label="Add" Click="AppBarButton_Click"/>
                         <AppBarButton Icon="Delete" Label="Delete" Click="AppBarButton_Click"/>
@@ -32,13 +33,20 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Positions">
-                <GridView ItemsSource="{x:Bind Positions}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Position">
-                            <controls:PositionTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Modify salaries" Grid.Row="0" Style="{StaticResource PivotDescriptionTextBox}"/>
+                    <GridView ItemsSource="{x:Bind Positions}" Grid.Row="1">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="data:Position">
+                                <controls:PositionTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Advanced Payments">
                 <Grid>

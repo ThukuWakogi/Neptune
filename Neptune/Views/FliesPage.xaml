@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="Neptune.Views.FliesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Views"
+    xmlns:data="using:Neptune.Models"
+    xmlns:controls="using:Neptune.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <CommandBar Name="FlyCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+            <AppBarButton Name="AddFlyAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
+            <AppBarButton Name="DeleteFlyAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+            <AppBarToggleButton Name="SelectFlyAppBarToggleButton" Label="Select">
+                <AppBarToggleButton.Icon>
+                    <FontIcon Glyph="&#xE762;"/>
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+        </CommandBar>
+        <GridView Name="FlyPatternsGridView" ItemsSource="{x:Bind FlyPatterns}" Grid.Row="1" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="FlyPatternsGridView_ItemClick" Margin="10">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:FlyPattern">
+                    <controls:FlyPatternTemplateControl />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>

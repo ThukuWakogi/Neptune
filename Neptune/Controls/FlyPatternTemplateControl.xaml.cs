@@ -1,6 +1,8 @@
 ﻿using Neptune.Models;
+using Neptune.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -18,24 +20,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Neptune.Controls
 {
-    public sealed partial class MaterialCategoryItemsControlTemplate : UserControl
+    public sealed partial class FlyPatternTemplateControl : UserControl
     {
-        private Material Material { get => DataContext as Material; }
+        private FlyPattern FlyPattern { get => DataContext as FlyPattern; }
+        //private string DisplayNumberOfFliesInPattern { get => $"{AppShell.Flies.Count(x => x.FlyPattern.Id == (DataContext as FlyPattern).Id)}"; } 
 
-        public MaterialCategoryItemsControlTemplate()
+        public FlyPatternTemplateControl()
         {
             this.InitializeComponent();
             DataContextChanged += (s, e) => Bindings.Update();
         }
-
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            //MaterialcategoryItemsControlTemplateGrid.Width = (sender as MaterialCategoryItemsControlTemplate).ActualWidth;
-        }
-
-        //private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        //{
-        //    MaterialcategoryItemsControlTemplateGrid.Width = (sender as MaterialCategoryItemsControlTemplate).ActualWidth;
-        //}
     }
 }

@@ -24,5 +24,8 @@
         <Style x:Key="MasterOrderTextBlockFontSizeStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12"/>
         </Style>
+        <Style x:Key="PivotDescriptionTextBox" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Application.Resources>
 </Application>
