@@ -24,6 +24,19 @@
         <Style x:Key="MasterOrderTextBlockFontSizeStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12"/>
         </Style>
+        <Style x:Key="DefaultNeptuneFormatGrid" TargetType="Grid">
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundListLowBrush}"/>
+        </Style>
+        <Style x:Key="GridViewHeaderTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+        <Style x:Key="GridViewDetailTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
         <Style x:Key="PivotDescriptionTextBox" TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
         </Style>

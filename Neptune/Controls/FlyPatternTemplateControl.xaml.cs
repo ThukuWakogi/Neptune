@@ -23,7 +23,6 @@ namespace Neptune.Controls
     public sealed partial class FlyPatternTemplateControl : UserControl
     {
         private FlyPattern FlyPattern { get => DataContext as FlyPattern; }
-        //private string DisplayNumberOfFliesInPattern { get => $"{AppShell.Flies.Count(x => x.FlyPattern.Id == (DataContext as FlyPattern).Id)}"; } 
 
         public FlyPatternTemplateControl()
         {

@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Padding="20" Background="{ThemeResource SystemControlBackgroundListLowBrush}">
+    <Grid Style="{StaticResource DefaultNeptuneFormatGrid}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -18,8 +18,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Name="CategoryTextBox" Text="{x:Bind MaterialCategory.Category}" FontSize="26" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-            <TextBlock Name="NumberTextBox" Text="{x:Bind MaterialCategory.DisplayMaterialsNumber}" Grid.Row="1" FontSize="12" HorizontalAlignment="Left"/>
+            <TextBlock Name="CategoryTextBox" Text="{x:Bind MaterialCategory.Category}" Style="{StaticResource GridViewHeaderTextBlock}"/>
+            <TextBlock Name="NumberTextBox" Text="{x:Bind MaterialCategory.DisplayMaterialsNumber}" Grid.Row="1" Style="{StaticResource GridViewDetailTextBlock}"/>
         </Grid>
     </Grid>
 </UserControl>

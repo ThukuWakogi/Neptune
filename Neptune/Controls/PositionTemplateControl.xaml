@@ -6,17 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Margin="20" Name="PositionTemplateGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="80" Text="&#xE1A6;" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0,0,20,0"/>
-        <TextBlock Text="{x:Bind Position.PositionName}" Grid.Column="1" FontSize="25" HorizontalAlignment="Left"/>
-        <TextBlock Text="{x:Bind Position.Salary}" Grid.Column="1" Grid.Row="1" FontSize="15" HorizontalAlignment="Left"/>
+    <Grid Style="{StaticResource DefaultNeptuneFormatGrid}">
+        <Grid Margin="20" Name="PositionTemplateGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="210"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="55" Text="&#xE1A6;" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+            <TextBlock Text="{x:Bind Position.PositionName}" Grid.Column="1" Style="{StaticResource GridViewHeaderTextBlock}"/>
+            <TextBlock Text="{x:Bind Position.Salary}" Grid.Column="1" Grid.Row="1" Style="{StaticResource GridViewDetailTextBlock}"/>
+        </Grid>
     </Grid>
 </UserControl>
