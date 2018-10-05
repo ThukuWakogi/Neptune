@@ -25,15 +25,16 @@ namespace Neptune.Views
     public sealed partial class FliesPage : Page
     {
         private ObservableCollection<FlyPattern> FlyPatterns = AppShell.FlyPatterns;
+        public delegate void FliesPageEventHandler(object sender, RoutedEventArgs e);
+        public static event FliesPageEventHandler OnNavigatedParentReady;
 
         public FliesPage()
         {
             this.InitializeComponent();
         }
 
-        private void FlyPatternsGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
+        private void FlyPatternsGridView_ItemClick(object sender, ItemClickEventArgs e) => OnNavigatedParentReady?.Invoke(sender, e);
 
-        }
+        private void AllFliesViewButton_Click(object sender, RoutedEventArgs e) => OnNavigatedParentReady?.Invoke(sender, e);
     }
 }

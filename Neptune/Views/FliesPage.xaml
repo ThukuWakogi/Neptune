@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <CommandBar Name="FlyCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
             <AppBarButton Name="AddFlyAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
@@ -31,5 +32,8 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+        <Grid Grid.Row="2" HorizontalAlignment="Right">
+            <Button Name="AllFliesViewButton" Content="View All Flies" HorizontalAlignment="Left" Margin="0,0,10,10" Click="AllFliesViewButton_Click"/>
+        </Grid>
     </Grid>
 </Page>

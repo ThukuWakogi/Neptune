@@ -29,7 +29,8 @@
                   Grid.Row="1" 
                   SelectionMode="Single" 
                   ItemClick="MaterialCategoryGridView_ItemClick" 
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  Margin="10">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:MaterialCategory">
                     <controls:MaterialCategotyTemplateControl HorizontalAlignment="Stretch"/>

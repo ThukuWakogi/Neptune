@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Neptune.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +25,21 @@ namespace Neptune.Views
     /// </summary>
     public sealed partial class FlyPatternItemsPage : Page
     {
+        ObservableCollection<Fly> Flies;
+
         public FlyPatternItemsPage()
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is FlyPattern) Flies = new ObservableCollection<Fly>(AppShell.Flies.Where(x => x.FlyPattern.Id == (e.Parameter as FlyPattern).Id));
+            else Flies = AppShell.Flies;
+
+            base.OnNavigatedTo(e);
+        }
+
+        public ObservableCollection<T> ToObservableCollection<T>(IEnumerable<T> original) => new ObservableCollection<T>(original);
     }
 }

@@ -9,15 +9,17 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Margin="10" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Name="CategoryTextBox" Text="{x:Bind MaterialCategory.Category}" FontSize="30" HorizontalAlignment="Left"/>
-        <TextBlock Name="NumberTextBox" Text="{x:Bind MaterialCategory.DisplayMaterialsNumber}" Grid.Row="1" FontSize="15" HorizontalAlignment="Left"/>
+    <Grid Padding="20" Background="{ThemeResource SystemControlBackgroundListLowBrush}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="CategoryTextBox" Text="{x:Bind MaterialCategory.Category}" FontSize="26" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+            <TextBlock Name="NumberTextBox" Text="{x:Bind MaterialCategory.DisplayMaterialsNumber}" Grid.Row="1" FontSize="12" HorizontalAlignment="Left"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -24,10 +24,10 @@
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
         </CommandBar>
-        <ListView>
+        <ListView Name="FliesListView" ItemsSource="{x:Bind Flies}" Grid.Row="1" SelectionMode="Single">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    
+                <DataTemplate x:DataType="data:Fly">
+                    <controls:FlyPatternItemTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

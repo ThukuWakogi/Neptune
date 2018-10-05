@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptune.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,9 +20,12 @@ namespace Neptune.Controls
 {
     public sealed partial class FlyPatternItemTemplateControl : UserControl
     {
+        private Fly Fly { get => DataContext as Fly; }
+
         public FlyPatternItemTemplateControl()
         {
             this.InitializeComponent();
+            DataContextChanged += (s, e) => Bindings.Update();
         }
     }
 }

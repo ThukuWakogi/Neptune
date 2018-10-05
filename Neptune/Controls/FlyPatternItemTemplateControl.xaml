@@ -15,7 +15,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Fly Number"/>
-        <TextBlock Text="Fly Pattern" Grid.Column="1"/>
+        <TextBlock Text="{x:Bind Fly.DisplayFlyNumberAndName}"/>
+        <TextBlock Text="{x:Bind Fly.FlyPattern.FlyPatternName}" Grid.Column="1"/>
     </Grid>
 </UserControl>
