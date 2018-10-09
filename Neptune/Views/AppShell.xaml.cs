@@ -39,7 +39,6 @@ namespace Neptune.Views
         {
             this.InitializeComponent();
             MaterialsPage.OnNavigatedParentReady += OnViewMaterial;
-            FliesPage.OnNavigatedParentReady += OnViewFly;
         }
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

@@ -9,17 +9,6 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <Grid Margin="0" Padding="10">
-        <!--<Grid Margin="10" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind FlyPattern.FlyPatternName}" Grid.Row="0" FontSize="26" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-            <TextBlock Text="{x:Bind FlyPattern.DisplayNumberOfFliesInPattern}" Grid.Row="1" FontSize="12" HorizontalAlignment="Left"/>
-        </Grid>-->
         <Grid Style="{StaticResource FlyPatternListViewFormat}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

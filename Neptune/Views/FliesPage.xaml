@@ -22,29 +22,56 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
-                    <CommandBar Name="FlyCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
-                        <AppBarButton Name="AddFlyAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
-                        <AppBarButton Name="DeleteFlyAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
-                        <AppBarToggleButton Name="SelectFlyAppBarToggleButton" Label="Select">
+                    <CommandBar Name="FlyPatternCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+                        <AppBarButton Name="AddFlyPatternAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
+                        <AppBarButton Name="DeleteFlyPatternAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                        <AppBarToggleButton Name="SelectFlyPatternAppBarToggleButton" Label="Select">
                             <AppBarToggleButton.Icon>
                                 <FontIcon Glyph="&#xE762;"/>
                             </AppBarToggleButton.Icon>
                         </AppBarToggleButton>
                     </CommandBar>
-                    <ListView Name="FlyPatternsListView" ItemsSource="{x:Bind FlyPatterns}" SelectionMode="Single" Grid.Row="1" IsItemClickEnabled="True">
+                    <ListView Name="FlyPatternsListView" ItemsSource="{x:Bind FlyPatterns}" SelectionMode="Single" Grid.Row="1" IsItemClickEnabled="True" ItemClick="FlyPatternsListView_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:FlyPattern">
                                 <controls:FlyPatternTemplateControl/>
                             </DataTemplate>
-                        </ListView.ItemTemplate>                        
+                        </ListView.ItemTemplate>
                     </ListView>
+                    
                 </Grid>
             </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CommandBar Name="FlyPatternItemsCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+                        <AppBarButton Name="AddFlyPatternItemsAppBarButton" Icon="Add" Label="Add" Visibility="Visible"/>
+                        <AppBarButton Name="DeleteFlyPatternItemsAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                        <AppBarToggleButton Name="SelectFlyPatternItemsAppBarToggleButton" Label="Select">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon Glyph="&#xE762;"/>
+                            </AppBarToggleButton.Icon>
+                        </AppBarToggleButton>
+                    </CommandBar>
+                    <ListView Name="FlyPatternItemsListView" Grid.Row="1" SelectionMode="Single" IsItemClickEnabled="False" ItemClick="FlyPatternItemsListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:Fly">
+                                <controls:FlyPatternItemTemplateControl/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid Grid.Row="2" HorizontalAlignment="Right">
+                        <Button Name="AllFliesViewButton" Content="View All Flies" HorizontalAlignment="Left" Margin="0,0,10,10" Click="AllFliesViewButton_Click"/>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
         </SplitView>
-        <Grid Grid.Row="2" HorizontalAlignment="Right">
-            <Button Name="AllFliesViewButton" Content="View All Flies" HorizontalAlignment="Left" Margin="0,0,10,10" Click="AllFliesViewButton_Click"/>
-        </Grid>
     </Grid>
 </Page>
