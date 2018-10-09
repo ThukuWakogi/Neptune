@@ -9,29 +9,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <Style x:Key="TestSample" TargetType="Grid">
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <CommandBar Name="FlyCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
-            <AppBarButton Name="AddFlyAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
-            <AppBarButton Name="DeleteFlyAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
-            <AppBarToggleButton Name="SelectFlyAppBarToggleButton" Label="Select">
-                <AppBarToggleButton.Icon>
-                    <FontIcon Glyph="&#xE762;"/>
-                </AppBarToggleButton.Icon>
-            </AppBarToggleButton>
-        </CommandBar>
-        <GridView Name="FlyPatternsGridView" ItemsSource="{x:Bind FlyPatterns}" Grid.Row="1" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="FlyPatternsGridView_ItemClick" Margin="10">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="data:FlyPattern">
-                    <controls:FlyPatternTemplateControl />
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+        <SplitView IsPaneOpen="True" DisplayMode="Inline">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
+                    <CommandBar Name="FlyCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+                        <AppBarButton Name="AddFlyAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
+                        <AppBarButton Name="DeleteFlyAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                        <AppBarToggleButton Name="SelectFlyAppBarToggleButton" Label="Select">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon Glyph="&#xE762;"/>
+                            </AppBarToggleButton.Icon>
+                        </AppBarToggleButton>
+                    </CommandBar>
+                    <ListView Name="FlyPatternsListView" ItemsSource="{x:Bind FlyPatterns}" SelectionMode="Single" Grid.Row="1" IsItemClickEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:FlyPattern">
+                                <controls:FlyPatternTemplateControl/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>                        
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
         <Grid Grid.Row="2" HorizontalAlignment="Right">
             <Button Name="AllFliesViewButton" Content="View All Flies" HorizontalAlignment="Left" Margin="0,0,10,10" Click="AllFliesViewButton_Click"/>
         </Grid>

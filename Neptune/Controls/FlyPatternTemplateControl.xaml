@@ -8,9 +8,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
-    <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}" Margin="0" Padding="20">
-        <Grid Margin="10" >
+    <Grid Margin="0" Padding="10">
+        <!--<Grid Margin="10" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -20,6 +19,18 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Bind FlyPattern.FlyPatternName}" Grid.Row="0" FontSize="26" HorizontalAlignment="Left" Margin="0,0,0,5"/>
             <TextBlock Text="{x:Bind FlyPattern.DisplayNumberOfFliesInPattern}" Grid.Row="1" FontSize="12" HorizontalAlignment="Left"/>
+        </Grid>-->
+        <Grid Style="{StaticResource FlyPatternListViewFormat}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock Text="{x:Bind FlyPattern.FlyPatternName}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="26"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="{x:Bind FlyPattern.DisplayNumberOfFliesInPattern}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
