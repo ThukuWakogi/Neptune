@@ -32,7 +32,7 @@
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Orders">
-                <StackPanel>
+                <Grid>
                     <SplitView IsPaneOpen="True"  DisplayMode="Inline">
                         <SplitView.Pane>
                             <Grid >
@@ -84,7 +84,7 @@
                             </Grid>
                         </SplitView.Content>
                     </SplitView>
-                </StackPanel>
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
