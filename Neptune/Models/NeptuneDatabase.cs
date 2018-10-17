@@ -356,7 +356,47 @@ namespace Neptune.Models
                     DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
                     LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"]))
                 });
+
+                reader.Close();
+                CloseConnection();
             }
+        }
+
+        public static async Task<ObservableCollection<JobCard>> RetrieveJobCardsAsync(ObservableCollection<Order> orders, ObservableCollection<Worker> workers, ObservableCollection<Modifier> modifiers)
+        {
+            ObservableCollection<JobCard> returningJobCards = new ObservableCollection<JobCard>();
+
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                await OpenConnectionAsync();
+                cmd.CommandText = "SELECT jobcards.id AS id, order_items.order_id AS order_id, order_item, jobcards.dozens AS dozens, qa, tier, tie_complete_date, packer, pack_complete_date, jobcards.date_added AS date_added, jobcards.added_by AS added_by, jobcards.date_last_updated AS date_last_updated, jobcards.last_updated_by AS last_updated_by FROM neptune.jobcards, neptune.order_items WHERE jobcards.deleted = 0 AND jobcards.order_item = order_items.id;";
+                cmd.Connection = connect;
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
+
+                while (reader.Read())
+                {
+                    returningJobCards.Add(new JobCard
+                    {
+                        Id = Convert.ToInt32(reader["id"]),
+                        OrderItem = orders.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_id"])).OrderItems.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_id"])),
+                        Dozens = Convert.ToInt32(reader["dozens"]),
+                        Qa = workers.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["qa"])),
+                        Tier = workers.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["tier"])),
+                        TieDateCompleted = Convert.IsDBNull(reader["tie_complete_date"]) ? default(DateTime) : Convert.ToDateTime(reader["tie_complete_date"]),
+                        Packer = workers.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["packer"])),
+                        PackDateComplete = Convert.IsDBNull(reader["pack_complete_date"]) ? default(DateTime) : Convert.ToDateTime(reader["pack_complete_date"]),
+                        DateAdded = Convert.ToDateTime(reader["date_added"]),
+                        AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"])),
+                        DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]),
+                        LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"]))
+                    });
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+
+            return returningJobCards;
         }
     }
 }

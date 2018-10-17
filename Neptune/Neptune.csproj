@@ -129,6 +129,7 @@
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyMaterial.cs" />
     <Compile Include="Models\FlyPattern.cs" />
+    <Compile Include="Models\JobCard.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\MaterialCategory.cs" />
     <Compile Include="Models\Modifier.cs" />
