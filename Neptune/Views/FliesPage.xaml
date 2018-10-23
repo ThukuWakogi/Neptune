@@ -22,7 +22,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
                     <CommandBar Name="FlyPatternCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
@@ -41,7 +40,6 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>

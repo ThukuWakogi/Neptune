@@ -36,8 +36,8 @@ namespace Neptune.Models
             set => SetProperty(ref _tier, value);
         }
 
-        private DateTime? _tieDateCompleted;
-        public DateTime? TieDateCompleted
+        private DateTime _tieDateCompleted;
+        public DateTime TieDateCompleted
         {
             get => _tieDateCompleted;
             set => SetProperty(ref _tieDateCompleted, value);
@@ -50,11 +50,13 @@ namespace Neptune.Models
             set => SetProperty(ref _packer, value);
         }
 
-        private DateTime? _packDateComplete;
-        public DateTime? PackDateComplete
+        private DateTime _packDateComplete;
+        public DateTime PackDateComplete
         {
             get => _packDateComplete;
             set => SetProperty(ref _packDateComplete, value);
         }
+
+        public string DisplayJobCardId { get => $"JobCard No.{_id}"; }
     }
 }

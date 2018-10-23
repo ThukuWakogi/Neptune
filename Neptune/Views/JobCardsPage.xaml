@@ -1,0 +1,126 @@
+﻿<Page
+    x:Class="Neptune.Views.JobCardsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.Views"
+    xmlns:data="using:Neptune.Models"
+    xmlns:controls="using:Neptune.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="StackPanelTextBlockMarginPaddingFormat" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,5,15,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0,6,2,11"/>
+        </Style>
+        <Style x:Key="StackPanelHyperLinkButtonMarginPaddingFormat" TargetType="HyperlinkButton">
+            <Setter Property="Padding" Value="0,6,0,6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="ButtonMarginFormat" TargetType="Button">
+            <Setter Property="Margin" Value="0,4.8,10,0"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <SplitView IsPaneOpen="True" DisplayMode="Inline">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="1" BorderBrush="White" BorderThickness="5 0 0 0"/>
+                    <CommandBar Name="JobCardCommandBar" DefaultLabelPosition="Right" Grid.Row="0">
+                        <AppBarButton Name="AddJobCardAppBarButton" Icon="Add" Label="Add" Visibility="Visible" />
+                        <AppBarButton Name="DeleteJobCardAppBarButton" Icon="Delete" Label="Delete" Visibility="Collapsed"/>
+                        <AppBarToggleButton Name="SelectJobCardAppBarToggleButton" Label="Select">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon Glyph="&#xE762;"/>
+                            </AppBarToggleButton.Icon>
+                        </AppBarToggleButton>
+                    </CommandBar>
+                    <ListView Name="JobCardsListView" ItemsSource="{x:Bind jobCards}" SelectionMode="Single" Grid.Row="1" IsItemClickEnabled="True" ItemClick="JobCardsListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:JobCard">
+                                <controls:JobCardTemplateControl/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Name="JobCardDetailsGrid" Margin="10" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="JobCardTitle" Text="" Margin="0,9,10,9" Grid.Row="0" FontSize="20"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,9">
+                        <TextBlock Text="Tier: " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        <HyperlinkButton Name="JobCardTierNameHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,60,0" Click="JobCardHyperLinkButton_Click"/>
+                        <TextBlock Text="Packer: " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        <HyperlinkButton Name="JobCardPackerNameHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}"/>
+                    </StackPanel>
+                    <Grid Grid.Row="2" Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Order Item:" Margin="0,8,15,8" FontSize="18"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="Fly:" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                            <HyperlinkButton Name="JobCardOrderItemFlyNameHyperLink" Content="Certain Order" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <TextBlock Text="FlySize:" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,5,15,0"/>
+                            <TextBlock Name="JobCardOrderItemFlySizeTextBox" Text="#12" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <TextBlock Text="Dozens:" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,5,15,0"/>
+                            <TextBlock Name="JobCardOrderItemDozensTextBox" Text="20" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="3" Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="JobCardTieCompleteTextBox" Text="Tying" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        <TextBlock Name="JobCardPackCompleteTextBox" Text="Packing" Grid.Row="1" Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" >
+                            <Button Name="EditJobCardButton" Content="Edit" Style="{StaticResource ButtonMarginFormat}"/>
+                            <Button Name="DeleteJobCardButton" Content="Delete" Style="{StaticResource ButtonMarginFormat}" Margin="10,4.8,10,0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Added by " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
+                            <HyperlinkButton Name="JobCardAddingWorkerHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,3,0"/>
+                            <TextBlock Name="JobCardAddingDateTextBlock" Text="on " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Name="JobCardUpdateTextBox" Text="not yet updated " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
+                            <HyperlinkButton Name="JobCardUpdatingWorkerHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,3,0"/>
+                            <TextBlock Name="JobCardUpdatingDate" Text="on " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>

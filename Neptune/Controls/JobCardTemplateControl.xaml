@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Neptune.Controls.OrderTemplateControl"
+    x:Class="Neptune.Controls.JobCardTemplateControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Neptune.Controls"
@@ -9,21 +9,21 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid  Style="{StaticResource GridListViewGridFormat}">
+    <Grid Style="{StaticResource GridListViewGridFormat}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{x:Bind Order.DateAdded}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
+            <TextBlock Text="{x:Bind JobCard.DateAdded}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="{x:Bind Order.DisplayOrderNo}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="26"/>
+            <TextBlock Text="{x:Bind JobCard.DisplayJobCardId}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="26"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Text="{x:Bind Order.Customer.FullName}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
-            <TextBlock Text="{x:Bind Order.DisplayOrderItemNumber}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="10,5,0,0"/>
+            <TextBlock Text="{x:Bind JobCard.Tier.DisplayFullNameAndPosition}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="0,5,0,0"/>
+            <TextBlock Text="{x:Bind JobCard.OrderItem.DisplayOrderTimeNameWithLabel}" Style="{StaticResource MasterOrderTextBlockFontSizeStyle}" Margin="10,5,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -378,7 +378,7 @@ namespace Neptune.Models
                     returningJobCards.Add(new JobCard
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        OrderItem = orders.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_id"])).OrderItems.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_id"])),
+                        OrderItem = orders.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_id"])).OrderItems.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["order_item"])),
                         Dozens = Convert.ToInt32(reader["dozens"]),
                         Qa = workers.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["qa"])),
                         Tier = workers.FirstOrDefault(x => x.Id == Convert.ToInt32(reader["tier"])),

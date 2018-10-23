@@ -104,6 +104,9 @@
     <Compile Include="Controls\FlyPatternTemplateControl.xaml.cs">
       <DependentUpon>FlyPatternTemplateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\JobCardTemplateControl.xaml.cs">
+      <DependentUpon>JobCardTemplateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MaterialCategoryItemsControlTemplate.xaml.cs">
       <DependentUpon>MaterialCategoryItemsControlTemplate.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,9 @@
     </Compile>
     <Compile Include="Views\FlyPatternItemsPage.xaml.cs">
       <DependentUpon>FlyPatternItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JobCardsPage.xaml.cs">
+      <DependentUpon>JobCardsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MaterialItemsPage.xaml.cs">
       <DependentUpon>MaterialItemsPage.xaml</DependentUpon>
@@ -206,6 +212,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\JobCardTemplateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MaterialCategoryItemsControlTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FlyPatternItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JobCardsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

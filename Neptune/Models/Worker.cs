@@ -21,5 +21,7 @@ namespace Neptune.Models
             get => _position;
             set => SetProperty(ref _position, value);
         }
+
+        public string DisplayFullNameAndPosition { get => $"{_position.PositionName}: {FullName}"; }
     }
 }
