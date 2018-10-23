@@ -25,6 +25,9 @@ namespace Neptune.Views
     public sealed partial class JobCardsPage : Page
     {
         private ObservableCollection<JobCard> jobCards = new ObservableCollection<JobCard>();
+        private JobCard clickedJobCard = new JobCard();
+        public delegate void JobCardsPageEventHandler(object sender, RoutedEventArgs e, Worker workerToBeViewed);
+        public static event JobCardsPageEventHandler OnNavigatedParentReady;
 
         public JobCardsPage()
         {
@@ -33,6 +36,7 @@ namespace Neptune.Views
 
         private void JobCardsListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            clickedJobCard = (e.ClickedItem as JobCard);
             JobCardDetailsGrid.Visibility = Visibility.Visible;
             JobCardTitle.Text = (e.ClickedItem as JobCard).DisplayJobCardId;
             JobCardTierNameHyperLinkButton.Content = (e.ClickedItem as JobCard).Tier.FullName;
@@ -67,9 +71,14 @@ namespace Neptune.Views
             base.OnNavigatedTo(e);
         }
 
-        private void JobCardHyperLinkButton_Click(object sender, RoutedEventArgs e)
-        {
+        private void JobCardTierNameHyperLinkButton_Click(object sender, RoutedEventArgs e) => OnNavigatedParentReady?.Invoke(sender, e, clickedJobCard.Tier);
 
-        }
+        private void JobCardPackerNameHyperLinkButton_Click(object sender, RoutedEventArgs e) => OnNavigatedParentReady?.Invoke(sender, e, clickedJobCard.Packer);
+
+        private void JobCardAddingWorkerHyperLinkButton_Click(object sender, RoutedEventArgs e) 
+            => OnNavigatedParentReady?.Invoke(sender, e, AppShell.Workers.FirstOrDefault(x => x.Id == clickedJobCard.AddedBy.Id));
+
+        private void JobCardUpdatingWorkerHyperLinkButton_Click(object sender, RoutedEventArgs e) 
+            => OnNavigatedParentReady?.Invoke(sender, e, AppShell.Workers.FirstOrDefault(x => x.Id == clickedJobCard.LastUpdatedBy.Id));
     }
 }

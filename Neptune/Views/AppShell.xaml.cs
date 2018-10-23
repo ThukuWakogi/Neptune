@@ -40,6 +40,7 @@ namespace Neptune.Views
         {
             this.InitializeComponent();
             MaterialsPage.OnNavigatedParentReady += OnViewMaterial;
+            JobCardsPage.OnNavigatedParentReady += OnViewWorker;
         }
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -114,14 +115,9 @@ namespace Neptune.Views
 
         private void OnViewMaterial(object sender, RoutedEventArgs e) => ContentFrame.Navigate(typeof(MaterialItemsPage), (e as ItemClickEventArgs).ClickedItem as MaterialCategory);
 
-        private void OnViewFly(object sender, RoutedEventArgs e)
+        private void OnViewWorker(object sender, RoutedEventArgs e, Worker worker)
         {
-            //ContentFrame.Navigate(typeof(FlyPatternItemsPage), (e as ItemClickEventArgs).ClickedItem as FlyPattern)
-
-            if (e is ItemClickEventArgs)
-                ContentFrame.Navigate(typeof(FlyPatternItemsPage), (e as ItemClickEventArgs).ClickedItem as FlyPattern);
-            else
-                ContentFrame.Navigate(typeof(FlyPatternItemsPage));
+            ContentFrame.Navigate(typeof(WorkerDetailsPage), worker);
         }
     }
 }

@@ -62,9 +62,16 @@
                     <TextBlock Name="JobCardTitle" Text="" Margin="0,9,10,9" Grid.Row="0" FontSize="20"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,9">
                         <TextBlock Text="Tier: " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
-                        <HyperlinkButton Name="JobCardTierNameHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,60,0" Click="JobCardHyperLinkButton_Click"/>
+                        <HyperlinkButton Name="JobCardTierNameHyperLinkButton" 
+                                         Content="Name Name" 
+                                         Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" 
+                                         Margin="0,0,60,0" 
+                                         Click="JobCardTierNameHyperLinkButton_Click"/>
                         <TextBlock Text="Packer: " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}"/>
-                        <HyperlinkButton Name="JobCardPackerNameHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}"/>
+                        <HyperlinkButton Name="JobCardPackerNameHyperLinkButton" 
+                                         Content="Name Name" 
+                                         Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" 
+                                         Click="JobCardPackerNameHyperLinkButton_Click"/>
                     </StackPanel>
                     <Grid Grid.Row="2" Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
@@ -110,12 +117,20 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Added by " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
-                            <HyperlinkButton Name="JobCardAddingWorkerHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,3,0"/>
+                            <HyperlinkButton Name="JobCardAddingWorkerHyperLinkButton" 
+                                             Content="Name Name" 
+                                             Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" 
+                                             Margin="0,0,3,0" 
+                                             Click="JobCardAddingWorkerHyperLinkButton_Click"/>
                             <TextBlock Name="JobCardAddingDateTextBlock" Text="on " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
                             <TextBlock Name="JobCardUpdateTextBox" Text="not yet updated " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
-                            <HyperlinkButton Name="JobCardUpdatingWorkerHyperLinkButton" Content="Name Name" Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" Margin="0,0,3,0"/>
+                            <HyperlinkButton Name="JobCardUpdatingWorkerHyperLinkButton" 
+                                             Content="Name Name" 
+                                             Style="{StaticResource StackPanelHyperLinkButtonMarginPaddingFormat}" 
+                                             Margin="0,0,3,0"
+                                             Click="JobCardUpdatingWorkerHyperLinkButton_Click"/>
                             <TextBlock Name="JobCardUpdatingDate" Text="on " Style="{StaticResource StackPanelTextBlockMarginPaddingFormat}" Margin="0,6,3,0"/>
                         </StackPanel>
                     </Grid>

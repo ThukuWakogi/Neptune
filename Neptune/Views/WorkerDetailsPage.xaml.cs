@@ -39,11 +39,30 @@ namespace Neptune.Views
             WorkerPositionTextBox.Text = workerInView.Position.PositionName;
             WorkerPhoneNumberTextBox.Text = workerInView.PhoneNumber;
 
-            if (workerInView.AddedBy.Id == loggedInWorker.Id) WorkerAddedInformationTextBox.Text = $"Added by you on {workerInView.DateAdded}";
-            else WorkerAddedInformationTextBox.Text = $"Added by {workerInView.AddedBy.FullName} on {workerInView.AddedBy}";
+            if (workerInView.AddedBy.Id == loggedInWorker.Id)
+            {
+                AddingWorkerNameHyperLinkButton.Content = $"You";
+                AddingDateTextBox.Text = $"on {workerInView.DateAdded}";
+            }
+            else
+            {
+                AddingWorkerNameHyperLinkButton.Content = $"{workerInView.AddedBy.FullName}";
+                AddingDateTextBox.Text = $"on {workerInView.DateAdded}";
+            }
 
-            if (workerInView.LastUpdatedBy.Id == loggedInWorker.Id) WorkerLastUpdatedInformationTextBox.Text = $"Last Updated by you on {workerInView.DateLastUpdated}";
-            else WorkerLastUpdatedInformationTextBox.Text = $"Last Updated By {workerInView.LastUpdatedBy.FullName} on {workerInView.DateLastUpdated}";
+            if (workerInView.DateAdded == workerInView.DateLastUpdated)
+            {
+                UpdatingWorkerNameHyperLinkButton.Visibility = Visibility.Collapsed;
+                UpdatingDateTextBox.Visibility = Visibility.Collapsed;
+                UpdateStatusTextBox.Text = "Not yet updated";
+            }
+            else
+            {
+                UpdatingWorkerNameHyperLinkButton.Visibility = Visibility.Visible;
+                UpdatingWorkerNameHyperLinkButton.Content = (workerInView.LastUpdatedBy.Id == loggedInWorker.Id) ? "you" : $"{workerInView.LastUpdatedBy.FullName}";
+                UpdatingDateTextBox.Visibility = Visibility.Visible;
+                UpdatingDateTextBox.Text = $"on {workerInView.DateLastUpdated}";
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -58,11 +77,11 @@ namespace Neptune.Views
                     WorkerDetailDeleteButton.Visibility = Visibility.Collapsed;
                 }
             }
-
-            //if (e.ToString() == "ControlPage")
-            //{
-            //    loggedInWorker = workerInView = NeptuneDatabase.WorkerSelector(ControlPage.Id, Workers);
-            //}
+            else if (e.Parameter is Worker)
+            {
+                workerInView = e.Parameter as Worker;
+                WorkerDetailLogOutButton.Visibility = Visibility.Collapsed;
+            }
 
             base.OnNavigatedTo(e);
         }
