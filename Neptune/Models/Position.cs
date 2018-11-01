@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptune.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,14 @@ namespace Neptune.Models
             get => _salary;
             set => SetProperty(ref _salary, value);
         }
+
+        public string DisplayTiersInPosition
+        {
+            get => (AppShell.Workers.Count(x => x.Position.Id == Id) == 1) 
+                ? $"{AppShell.Workers.Count(x => x.Position.Id == Id)} tier" 
+                : $"{AppShell.Workers.Count(x => x.Position.Id == Id)} tiers";
+        }
+
+        public string DisplaySalary { get => $"Salary: {_salary}/-"; }
     }
 }

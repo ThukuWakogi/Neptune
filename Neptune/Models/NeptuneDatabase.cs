@@ -398,5 +398,98 @@ namespace Neptune.Models
 
             return returningJobCards;
         }
+
+        public static async Task<bool> UpdatePositionRecordAsync(Worker updatingWorker, Position positionToUpdate, decimal salary)
+        {
+            bool updated = false;
+
+            using(MySqlCommand cmd = new MySqlCommand())
+            {
+                try
+                {
+                    await OpenConnectionAsync();
+                    cmd.CommandText = "UPDATE `neptune`.`positions` SET `salary` = @salary, `date_last_updated` = CURRENT_TIMESTAMP, `last_updated_by` = @editingWorkerId WHERE (`id` = @positionBeingUpdated);";
+                    cmd.Parameters.AddWithValue("@salary", salary);
+                    cmd.Parameters.AddWithValue("@editingWorkerId", updatingWorker.Id);
+                    cmd.Parameters.AddWithValue("@positionBeingUpdated", positionToUpdate.Id);
+                    cmd.Connection = connect;
+                    await cmd.ExecuteNonQueryAsync();
+                    await new MessageDialog($"{positionToUpdate.PositionName} salary updated").ShowAsync();
+                    updated = true;
+                }
+                catch (MySqlException e)
+                {
+                    await new MessageDialog($"Error: {e.Message}").ShowAsync();
+                }
+
+                CloseConnection();
+            }
+            return updated;
+        }
+
+        public static async Task<bool> UpdateWorkerRecordAsync(
+            Worker workerInUpdating, 
+            Worker updatingWorker, 
+            string firstName, 
+            string lastName, 
+            string phoneNumber, 
+            Position position)
+        {
+            bool updated = false;
+
+            using(MySqlCommand cmd = new MySqlCommand())
+            {
+                try
+                {
+                    await OpenConnectionAsync();
+                    cmd.CommandText = "UPDATE `neptune`.`workers` SET `first_name` = @firstName, `last_name` = @lastName, `phone_number` = @phoneNumber, `position_id` = @positionId, `date_last_updated` = CURRENT_TIMESTAMP, `last_updated_by` = @updatingUser WHERE (`id` = @workerInUpdating);";
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("@positionId", position.Id);
+                    cmd.Parameters.AddWithValue("@updatingUser", updatingWorker.Id);
+                    cmd.Parameters.AddWithValue("@workerInUpdating", workerInUpdating.Id);
+                    cmd.Connection = connect;
+                    await cmd.ExecuteNonQueryAsync();
+                    updated = true;
+                }
+                catch (MySqlException e)
+                {
+                    await new MessageDialog($"Error: {e.Message}").ShowAsync();
+
+                }
+
+                CloseConnection();
+            }
+
+            return updated;
+        }
+
+        public static async Task RetrieveWorkerAsync(Worker workerRequested, ObservableCollection<Worker> workers, ObservableCollection<Modifier> modifiers, ObservableCollection<Position> positions)
+        {
+            using (MySqlCommand cmd = new MySqlCommand())
+            {
+                await OpenConnectionAsync();
+                cmd.CommandText = "SELECT id, first_name, last_name, phone_number, position_id, date_added, added_by, date_last_updated, last_updated_by FROM neptune.workers WHERE deleted = 0 AND id = @id;";
+                cmd.Parameters.AddWithValue("@id", workerRequested.Id);
+                cmd.Connection = connect;
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync() as MySqlDataReader;
+
+                while (reader.Read())
+                {
+                    workers.First(x => x.Id == workerRequested.Id).FirstName = reader["first_name"].ToString();
+                    workers.First(x => x.Id == workerRequested.Id).LastName = reader["last_name"].ToString();
+                    workers.First(x => x.Id == workerRequested.Id).PhoneNumber = reader["phone_number"].ToString();
+                    workers.First(x => x.Id == workerRequested.Id).Position = positions.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["position_id"]));
+                    workers.First(x => x.Id == workerRequested.Id).DateAdded = Convert.ToDateTime(reader["date_added"]);
+                    workers.First(x => x.Id == workerRequested.Id).AddedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["added_by"]));
+                    workers.First(x => x.Id == workerRequested.Id).DateLastUpdated = Convert.ToDateTime(reader["date_last_updated"]);
+                    workers.First(x => x.Id == workerRequested.Id).LastUpdatedBy = modifiers.FirstOrDefault(p => p.Id == Convert.ToInt32(reader["last_updated_by"]));
+                }
+
+                reader.Close();
+                CloseConnection();
+            }
+        }
     }
 }

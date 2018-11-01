@@ -23,7 +23,7 @@
                             </AppBarToggleButton.Icon>
                         </AppBarToggleButton>
                     </CommandBar>
-                    <ListView ItemsSource="{x:Bind Workers}">
+                    <ListView Name="WorkersListView" ItemsSource="{x:Bind Workers}" IsItemClickEnabled="True" SelectionMode="Single" ItemClick="WorkersListView_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Worker">
                                 <controls:WorkerControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -39,7 +39,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Modify salaries" Grid.Row="0" Style="{StaticResource PivotDescriptionTextBox}"/>
-                    <GridView ItemsSource="{x:Bind Positions}" Grid.Row="1">
+                    <GridView Name="PositionsGridView" ItemsSource="{x:Bind Positions}" Grid.Row="1" ItemClick="PositionsGridView_ItemClickAsync" IsItemClickEnabled="True">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="data:Position">
                                 <controls:PositionTemplateControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -69,6 +69,9 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
+            </PivotItem>
+            <PivotItem Header="Credential Management">
+                
             </PivotItem>
         </Pivot>
     </Grid>

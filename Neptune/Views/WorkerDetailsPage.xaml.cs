@@ -27,6 +27,8 @@ namespace Neptune.Views
         ObservableCollection<Worker> Workers = new ObservableCollection<Worker>();
         Worker workerInView = new Worker();
         Worker loggedInWorker = new Worker();
+        public delegate void EditWorkerEventHandler(Worker worker);
+        public static event EditWorkerEventHandler OnEditWorkerReady;
 
         public WorkerDetailsPage()
         {
@@ -35,20 +37,12 @@ namespace Neptune.Views
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            loggedInWorker = AppShell.Workers.FirstOrDefault(p => p.Id == AppShell._loggedInUserId);
             WorkerDisplayPicture.DisplayName = WorkerFullNameTextBox.Text = workerInView.FullName;
             WorkerPositionTextBox.Text = workerInView.Position.PositionName;
             WorkerPhoneNumberTextBox.Text = workerInView.PhoneNumber;
-
-            if (workerInView.AddedBy.Id == loggedInWorker.Id)
-            {
-                AddingWorkerNameHyperLinkButton.Content = $"You";
-                AddingDateTextBox.Text = $"on {workerInView.DateAdded}";
-            }
-            else
-            {
-                AddingWorkerNameHyperLinkButton.Content = $"{workerInView.AddedBy.FullName}";
-                AddingDateTextBox.Text = $"on {workerInView.DateAdded}";
-            }
+            AddingWorkerNameHyperLinkButton.Content = (workerInView.AddedBy.Id == loggedInWorker.Id) ? $"You" : $"{workerInView.AddedBy.FullName}";
+            AddingDateTextBox.Text = $"on {workerInView.DateAdded}";
 
             if (workerInView.DateAdded == workerInView.DateLastUpdated)
             {
@@ -58,9 +52,7 @@ namespace Neptune.Views
             }
             else
             {
-                UpdatingWorkerNameHyperLinkButton.Visibility = Visibility.Visible;
-                UpdatingWorkerNameHyperLinkButton.Content = (workerInView.LastUpdatedBy.Id == loggedInWorker.Id) ? "you" : $"{workerInView.LastUpdatedBy.FullName}";
-                UpdatingDateTextBox.Visibility = Visibility.Visible;
+                UpdatingWorkerNameHyperLinkButton.Content = (workerInView.LastUpdatedBy.Id == loggedInWorker.Id) ? $"You" : $"{workerInView.LastUpdatedBy.FullName}";
                 UpdatingDateTextBox.Text = $"on {workerInView.DateLastUpdated}";
             }
         }
@@ -79,11 +71,13 @@ namespace Neptune.Views
             }
             else if (e.Parameter is Worker)
             {
-                workerInView = e.Parameter as Worker;
+                workerInView = AppShell.Workers.First(x => x.Id == (e.Parameter as Worker).Id);
                 WorkerDetailLogOutButton.Visibility = Visibility.Collapsed;
             }
 
             base.OnNavigatedTo(e);
         }
+
+        private void WorkerDetailEditButton_Click(object sender, RoutedEventArgs e) => OnEditWorkerReady?.Invoke(workerInView);
     }
 }

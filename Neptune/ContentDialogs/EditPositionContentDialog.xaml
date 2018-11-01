@@ -1,0 +1,27 @@
+﻿<ContentDialog
+    x:Class="Neptune.ContentDialogs.EditPositionContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Neptune.ContentDialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Edit Position"
+    Name="EditPositionSalaryContentDialog">
+
+    <StackPanel Name="EditPositionContentDialogStackPanel">
+        <TextBlock Name="PositionSalaryDetailTextBlock" Margin="0,0,5,0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="PositionSalaryTextBox" TextChanged="PositionSalaryTextBox_TextChanged" Margin="0,7,6,7" VerticalAlignment="Center"/>
+            <ProgressRing Name="EditPositionProgressRing" IsActive="False" Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+            <Button Name="SavePositionUpdateTextBox" Content="Save" Width="132" Margin="0,0,6,0" Click="SavePositionUpdateTextBox_ClickAsync"/>
+            <Button Name="CancelPositionUpdateTextBox" Content="Cancel" Width="132" HorizontalAlignment="Left" Click="CancelPositionUpdateTextBox_Click"/>
+        </StackPanel>
+    </StackPanel>
+</ContentDialog>

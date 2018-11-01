@@ -41,6 +41,10 @@ namespace Neptune.Views
             this.InitializeComponent();
             MaterialsPage.OnNavigatedParentReady += OnViewMaterial;
             JobCardsPage.OnNavigatedParentReady += OnViewWorker;
+            WorkersPage.OnNavigatedParentReady += OnViewWorker;
+            WorkerDetailsPage.OnEditWorkerReady += EditWorker;
+            EditWorkerPage.OnCancelClicked += GoBack;
+            EditWorkerPage.OnWorkerSaved += OnViewWorker;
         }
 
         private void ControlNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -75,7 +79,7 @@ namespace Neptune.Views
         private void NavigationViewItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(WorkerDetailsPage), "ControlPage");
-            ControlNavigationView.AlwaysShowHeader = false;
+            ControlNavigationView.Header = null;
         }
 
         private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
@@ -108,16 +112,23 @@ namespace Neptune.Views
             base.OnNavigatedTo(e);
         }
 
-        private void ControlNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-        {
-            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
-        }
+        private void ControlNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => GoBack();
 
         private void OnViewMaterial(object sender, RoutedEventArgs e) => ContentFrame.Navigate(typeof(MaterialItemsPage), (e as ItemClickEventArgs).ClickedItem as MaterialCategory);
 
-        private void OnViewWorker(object sender, RoutedEventArgs e, Worker worker)
+        private void OnViewWorker(object sender, RoutedEventArgs e, Worker worker = null)
         {
-            ContentFrame.Navigate(typeof(WorkerDetailsPage), worker);
+            ContentFrame.Navigate(typeof(WorkerDetailsPage), worker ?? (e as ItemClickEventArgs).ClickedItem as Worker);
+            ControlNavigationView.Header = null;
+        }
+
+        private void OnEditPosition(object sender, RoutedEventArgs e) => ContentFrame.Navigate(typeof(EditPositionPage));
+
+        private void EditWorker(Worker worker) => ContentFrame.Navigate(typeof(EditWorkerPage), worker);
+
+        private void GoBack()
+        {
+            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
     }
 }

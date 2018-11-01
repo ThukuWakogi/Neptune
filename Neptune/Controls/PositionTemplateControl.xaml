@@ -11,14 +11,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="210"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="55" Text="&#xE1A6;" Grid.RowSpan="2" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="55" Text="&#xE1A6;" Grid.RowSpan="3" HorizontalAlignment="Right" Margin="0,0,20,0"/>
             <TextBlock Text="{x:Bind Position.PositionName}" Grid.Column="1" Style="{StaticResource GridViewHeaderTextBlock}"/>
-            <TextBlock Text="{x:Bind Position.Salary}" Grid.Column="1" Grid.Row="1" Style="{StaticResource GridViewDetailTextBlock}"/>
+            <TextBlock Text="{x:Bind Position.DisplayTiersInPosition}" Grid.Column="1" Grid.Row="1" Style="{StaticResource GridViewDetailTextBlock}"/>
+            <TextBlock Text="{x:Bind Position.DisplaySalary}" Grid.Column="1" Grid.Row="2" Style="{StaticResource GridViewDetailTextBlock}"/>
         </Grid>
     </Grid>
 </UserControl>
